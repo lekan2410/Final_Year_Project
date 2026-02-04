@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+     
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        {% load static %}
+
+        
+         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
+    </head>
+    
+    <body>
+        
+        <div class="navigation_bar">
+            <ul class="nav-bar">
+                <li><a href="{% url 'home' %}" >Home Page</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'chatbot' %}">ChatBot</a></li>
+
+                <li>
+                    <div class="dropdown">
+                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                        <div class="dropdown-content">    
+                        
+                            {% if user.is_authenticated %}
+                               <p style="width: 13px"> {{user.username}}</p>
+                                
+                               <form action="{% url 'logout' %}" method="post"> 
+                                    {% csrf_token %}
+                                   <button class="log-out-button"> Logout </button>
+                               </form>
+
+                               <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                               return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                    {% csrf_token %}
+                                   <button class="delete-account-button"> Delete Account </button>
+                               </form>
+
+                              
+                               
+                            
+                            {% else %} 
+                            
+                               <a href="{% url 'login' %}">Login</a>
+                               <a href="{% url 'register' %}">Register </a>
+
+                            {% endif %}
+
+                               
+
+                            
+
+
+
+                        </div>
+                    </div>
+                </li>
+                        
+                
+            </ul>
+        </div>
+
+        
+    
+        <div class="login_container">
+
+            <u style="text-align: center"><p>Login Page</p></u>
+
+            <img src="{% static 'heaven_project_code/images/login_page/clouds.avif' %}" width=400px >
+
+            <br>
+            <br>
+
+            <form method = "post" class ="fields">
+                {% csrf_token %}
+                {{ form }}
+
+                <br>
+
+                <button type = "submit" class="login-register-submit" style="margin-left: 20%; border-radius: 10px; background-color: LightBlue">Login</button>
+            
+            </form>
+           
+            
+            <br>
+
+            
+            
+            <br>
+            <br>
+
+            <div> 
+               <a href="{% url 'register' %}", style="margin-left: 20%; color: inherit; text-decoration:none;">Don't Have an Account? Sign Up!</a>
+            </div>
+              
+
+        </div>
+
+        <div class="footer"> 
+            <h1 style="text-align: center;"> Footer </h1>
+            
+            <p>© 2026 Haven Project</p>
+            <p> Email:  w1985568@westminster.ac.uk</p>
+            
+            <p></p>
+            
+            
+
+
+        </div>
+ 
+    </body>
+</html>

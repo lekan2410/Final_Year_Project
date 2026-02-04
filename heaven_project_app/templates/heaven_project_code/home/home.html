@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+     <!-- Use https://www.notion.com/ for motivation -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        {% load static %}
+
+        
+         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
+    </head>
+    
+    <body>
+        
+        <div class="navigation_bar">
+            <ul class="nav-bar">
+                <li><a href="{% url 'home' %}" >Home Page</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'chatbot' %}">ChatBot</a></li>
+                 
+                <li>
+                    <div class="dropdown">
+                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                          <div class="dropdown-content">    
+                        
+                            {% if user.is_authenticated %}
+                               <p style="width: 13px"> {{user.username}}</p>
+                                
+                               <form action="{% url 'logout' %}" method="post"> 
+                                    {% csrf_token %}
+                                   <button class="log-out-button"> Logout </button>
+                               </form>
+
+                               <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                               return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                    {% csrf_token %}
+                                   <button class="delete-account-button"> Delete Account </button>
+                               </form>
+
+                              
+                               
+                            
+                            {% else %} 
+                            
+                               <a href="{% url 'login' %}">Login</a>
+                               <a href="{% url 'register' %}">Register </a>
+
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                </li>
+
+                
+
+            </ul>
+        </div>
+       
+
+        <div class="home-page-image"> 
+            <img src = "{% static 'heaven_project_code/images/home_page/SpaceX.avif' %}" width= 1000px; style="margin-left: 11%; margin-top: 10px" >
+        </div>
+
+        <a class="credentials" href="#"> Image By (Name) </a>
+ 
+
+        <div class="main-section-home"> 
+           <img src = "{% static 'heaven_project_code/images/home_page/City1.jpg' %}" width = 400px;> 
+           
+           <div class="main-section-home-text"> 
+              <h2> Introduction </h2>
+
+                        
+                    {% if user.is_authenticated %}
+                      
+                    {% endif %}
+              
+              <p> We help by providing services for people to use and it will be shown on the map and its free too. </p>
+
+           </div> 
+
+        </div>
+
+        <a class="credentials" href="#"> Image By (Name) </a>
+
+        <div class="main-section2-home"> 
+            
+            <div class="main-section-home-text"> 
+              <h2> What we do? </h2>
+              
+              <p> We help by providing services for people to use and it will be shown on the map and its free too. </p>
+               
+              
+           </div> 
+
+            <img src="{% static 'heaven_project_code/images/home_page/helping-hand.jpg' %}" width=400px>
+
+        </div>
+
+        <a class="credentials" href="#"> Image By (Name) </a>
+        
+
+        <div class="main-section3-home"> 
+            
+             <img src="{% static 'heaven_project_code/images/home_page/helping-hand.jpg' %}" width=400px>
+
+            <div class="main-section-home-text"> 
+              <h2> Why this is a problem? </h2>
+              
+              <p> We help by providing services for people to use and it will be shown on the map and its free too. </p>
+               
+           </div> 
+
+        </div>
+
+        <a class="credentials" href="#"> Image By (Name) </a>
+
+        <div class="footer"> 
+            <h1 style="text-align: center;"> Footer </h1>
+            
+            <p>© 2026 Haven Project</p>
+            <p> Email:  w1985568@westminster.ac.uk</p>
+            
+            <p></p>
+            
+            
+
+
+        </div>
+        
+ 
+    </body>
+</html>

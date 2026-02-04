@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+     <!-- Use https://www.notion.com/ for motivation -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Services</title>
+        {% load static %}
+
+        
+         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
+    </head>
+    
+    <body>
+        
+        <div class="navigation_bar">
+            <ul class="nav-bar">
+                <li><a href="{% url 'home' %}" >Home Page</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'chatbot' %}">ChatBot</a></li>
+
+                <li>
+                    <div class="dropdown">
+                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                         <div class="dropdown-content">    
+                        
+                            {% if user.is_authenticated %}
+                               <p style="width: 13px"> {{user.username}}</p>
+                                
+                               <form action="{% url 'logout' %}" method="post"> 
+                                    {% csrf_token %}
+                                   <button class="log-out-button"> Logout </button>
+                               </form>
+
+                               <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                                return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                        {% csrf_token %}
+                                    <button class="delete-account-button"> Delete Account </button>
+                               </form>
+
+                               
+                            {% else %} 
+                            
+                               <a href="{% url 'login' %}">Login</a>
+                               <a href="{% url 'register' %}">Register </a>
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+       
+        
+        <div class="search-services"> 
+            <form method="get" action="">
+                    <input name="q" type="text" placeholder="Seach...">
+                    <button type="submit"> Search </button>
+
+            </form>
+
+            <form method="POST">
+                {% csrf_token %}
+                 
+                <label for="country">Country: </label>
+                <input list="country_list" id="country" name="country" placeholder="Select Country" onchange="this.form.submit()"/>
+                 
+
+                {% if query %}
+                   <h3>Search results for "{{ query }}" </h3>
+                {% endif %}
+
+                {% if food_banks %}
+                        <h4>Food Banks</h4>
+              
+                    <div class="card-wrapper">
+                        {% for fb in food_banks %}
+                            <div class="service-card">
+                                <h3>{{ fb.name }}</h3>
+                                <p>{{ fb.city.name }}, {{ fb.city.country.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+
+
+                {% if shelters %}
+                        <h4> Shelters </h4>
+              
+                    <div class="card-wrapper">
+                        {% for sh in shelters %}
+                            <div class="service-card">
+                                <h3>{{ sh.name}} </h3>
+                                <p>{{ sh.city.name }}, {{ sh.city.country.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if support_services %}
+                    <h4> Support Services </h4>
+              
+                    <div class="card-wrapper">
+                        {% for ss in support_services %}
+                            <div class="service-card">
+                                <h3>{{ ss.name}} </h3>
+                                <p>{{ ss.city.name }}, {{ ss.city.country.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+
+
+                <datalist id="country_list"> 
+                    <option value=""> Select Country</option>
+                    
+                    {% for c in countries %} 
+                       <option value="{{ c.id }}"  {% if c.id == selected_country %} selected {% endif %}>
+                           {{c.name}}
+                       </option>
+                    {% endfor %}
+
+                </datalist>
+
+                <label for="city">City: </label>
+                <input list="city_list" id="city" name="city" placeholder="Enter City" />
+
+                <datalist id="city_list"> 
+                    <option value="">Select City: </option>
+                    
+                    {% for city in cities %} 
+                       <option value="{{ city.id }}" {% if city.id == selected_city %} selected {% endif %}> 
+                           {{city.name}}
+                       </option>
+                    {% endfor %}
+                </datalist>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="footer"> 
+            <h1 style="text-align: center;"> Footer </h1>
+            
+            <p>© 2026 Haven Project</p>
+            <p> Email:  w1985568@westminster.ac.uk</p>
+
+        </div>
+        
+ 
+    </body>
+</html>

@@ -1,0 +1,248 @@
+body {
+     background-color: #f5f5f5;
+     color: #666666;
+     font-family: 'Comic Neue', Comic Sans MS, cursive;
+}
+
+.login_container {
+            max-width: 400px;
+            margin: auto;
+            padding: 2rem;
+            margin-top: 20vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            background-color: #fff;
+            border-radius: 20px;
+}
+
+
+.password_field {
+    margin-left: -200px;
+}
+
+
+.fields {
+    margin-left: 30%;
+}
+
+.fields label {
+    display: block;
+}
+
+/* Navigation Bar */
+
+.navigation_bar {
+            max-width: 100%;
+            margin: auto;
+            padding: 2rem;
+            border-color: black;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            background-color: #fff;
+            border-radius: 20px;
+}
+
+
+.nav-bar {
+  display: flex;
+  list-style-type: none;
+  gap: 25%;
+  margin: 0;
+  margin-left: 23%;
+  padding: 0;
+}
+
+.nav-bar a {
+    color: #666666;
+    text-underline-offset: 5px;
+    text-decoration: underline; 
+    text-decoration-color: #666666;
+}
+
+.nav-bar a:visited {
+    color:  #666666;
+    text-decoration: underline;
+    text-decoration-color: #666666;
+}
+
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: pink;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.delete-account-button {
+    display: inline-block;
+    background-color: red;
+
+    color: white;
+    
+    padding-right: 100px;
+
+    width: 30px;
+    cursor: pointer;
+    
+}
+
+.log-out-button {
+    display: inline-block;
+    background-color: orange;
+
+    color: white;
+    
+    padding-right: 100px;
+
+    width: 10px;
+    cursor: pointer;
+    
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* Home Page */
+
+.credentials {
+    color: #666666;
+    text-underline-offset: 5px;
+    text-decoration: underline; 
+    text-decoration-color: #666666;
+}
+
+.credentials:visited {
+    color:  #666666;
+    text-decoration: underline;
+    text-decoration-color: #666666;
+}
+
+
+.main-section-home {
+    display: flex; 
+    gap: 2rem;
+    max-width: 1000px;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.main-section-home img {
+    display: flex;
+}
+
+.main-section-home-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.main-section-home-text h2 {
+    
+    text-align: center;
+}
+
+.main-section2-home {
+    display: flex;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+
+.main-section3-home {
+    display: flex; 
+    gap: 2rem;
+    max-width: 1000px;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fff;
+    border-radius: 20px;
+    
+}
+
+/* Footer */
+
+.footer {
+    max-width: 100%;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.footer h1 {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+/* Service Page */
+
+.card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    width: 280px; 
+    gap: 0.5rem;
+    margin: auto;
+    padding: 1.5rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.search-services {
+    max-width: 100%;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+}
+
