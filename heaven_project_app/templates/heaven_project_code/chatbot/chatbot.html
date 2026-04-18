@@ -4,78 +4,164 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ChatBot</title>
         {% load static %}
+        {% load i18n %}
+        <title>{% trans "Chatbot" %}</title>
 
         
          <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+        <link rel="stylesheet" href="{% static 'heaven_project_code/chatbot/chatbot.css' %}">
         <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
     </head>
     
     <body>
         
-        <div class="navigation_bar">
-            <ul class="nav-bar">
-                <li><a href="{% url 'home' %}" >Home Page</a></li>
-                <li><a href="{% url 'services' %}">Services</a></li>
-                <li><a href="{% url 'chatbot' %}">ChatBot</a></li>
-                 
-                <li>
-                    <div class="dropdown">
-                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
-                         <div class="dropdown-content">    
-                        
-                            {% if user.is_authenticated %}
-                               <p style="width: 13px"> {{user.username}}</p>
+         <div class="navigation_bar">
+                <div class="navigation_container">
+
+                    <ul class="nav-bar" id="nav-bar">
+                        <li><a href="{% url 'home' %}" >{% trans "Home Page" %}</a></li>
+                        <li><a href="{% url 'services' %}">{% trans "Services" %}</a></li>
+                        <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
+
+                        <li>
+                            <div class="dropdown">
+
+                                {% if user.profile.profile_image %}
+
+                                    <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
+
+                                {% else %}
+
+                                    <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                    
+                                {% endif %}
                                 
-                               <form action="{% url 'logout' %}" method="post"> 
-                                    {% csrf_token %}
-                                   <button class="log-out-button"> Logout </button>
-                               </form>
+                                <div class="dropdown-content">    
+                                
+                                    {% if user.is_authenticated %}
+                                    <p style="width: 13px"> {{user.username}}</p>
+                                        
+                                    <form action="{% url 'logout' %}" method="post"> 
+                                            {% csrf_token %}
+                                        <button class="log-out-button"> {% trans "Logout" %} </button>
+                                    </form>
 
-                               <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                               return confirm('This will permenantely delete your account, Are you sure?');"> 
-                                    {% csrf_token %}
-                                   <button class="delete-account-button"> Delete Account </button>
-                               </form>
+                                    <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                            {% csrf_token %}
+                                        <button class="delete-account-button"> {% trans "Delete Account" %}</button>
+                                    </form>
 
-                              
-                               
-                            
-                            {% else %} 
-                            
-                               <a href="{% url 'login' %}">Login</a>
-                               <a href="{% url 'register' %}">Register </a>
+                                    
+                                    <a href="{% url 'edit_account' %}" class="edit_account_link">{% trans "Edit Account" %}</a>
+                                    
+                                    {% else %} 
+                                    
+                                    <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                                    <a href="{% url 'register' %}">{% trans "Register" %} </a>
 
-                            {% endif %}
+                                    {% endif %}
 
-                        </div>
-                    </div>
-                </li>
+                                
+                                </div>
+                            </div>
+                        </li>
+                                
+                        
+                    </ul>
+                    
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
 
-                
-
-            </ul>
+                </div>
         </div>
-       
 
-        <div class="main-section-home"> 
-           <h1> Coming Soon! <h1>
+
+        <div class="chat-box-container"> 
+            <p> Use "Commands" or "Help" to find out more</p>
+            <p> Please type in "Limitation On Location" to find out more before entering Postcode
+
+             <div id="chat-box" class="chat-box"></div>  <!-- THIS WILL HOLD MESSAGES -->
+            <input id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()" class="btn"> {% trans "Send" %}</button>
         </div>
+
 
         <div class="footer"> 
-            <h1 style="text-align: center;"> Footer </h1>
+            <h1 style="text-align: center;"> {% trans "Footer" %}</h1>
             
             <p>© 2026 Haven Project</p>
-            <p> Email:  w1985568@westminster.ac.uk</p>
+            <p> {% trans "Email" %}:  w1985568@westminster.ac.uk</p>
             
             <p></p>
+
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_current_language as LANGUAGE_CODE %}
+
             
+                <select name="language" class="custom-select">
+                    {% for lang in LANGUAGES %}
+                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected {% endif %}>
+                            {{ lang.1 }} 
+                        </option>
+                    {% endfor %}
+                </select>
+
+                  
+                <button type="submit" class="btn"> {% trans "Save" %}</button>
+              
+            </form> 
+
             
+            <script>
+                function sendMessage() {
+                    let input = document.getElementById("user-input");
+                    let message = input.value;
+
+                    if (!message) return;
+
+                    let chatBox = document.getElementById("chat-box");
+
+                    // User message
+                    let userMsg = document.createElement("div")
+                    userMsg.className = "message user";
+                    userMsg.textContent = message;
+                    chatBox.appendChild(userMsg);
+
+                    //Send to Django
+                    fetch(`/chatbot-response/?message=${encodeURIComponent(message)}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let botMsg = document.createElement("div")
+                            botMsg.className = "message bot"
+                            botMsg.innerHTML = data.response;
+                            chatBox.appendChild(botMsg);
+
+                            chatBox.scrollTop = chatBox.scrollHeight;
+                        });
+
+                    input.value = "";
+
+
+                }
+            </script>
 
 
         </div>
+
+        <script> 
+           function myFunction() {
+              var x = document.getElementById("nav-bar");
+              x.classList.toggle("active")
+
+           }
+        </script>
         
  
     </body>

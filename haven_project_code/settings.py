@@ -1,3 +1,25 @@
+import os
+from dotenv import load_dotenv
+from pathlib import Path
+ 
+load_dotenv()
+ 
+GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID')
+if not GOOGLE_OAUTH_CLIENT_ID:
+    raise ValueError(
+        'GOOGLE_OAUTH_CLIENT_ID is missing.'
+        'Have you put it in a file at core/.env ?'
+    )
+ 
+# We need these lines below to allow the Google sign in popup to work.
+SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+
+# Get the SECRET_KEY from the environment
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+
+
 """
 Django settings for haven_project_code project.
 
@@ -10,17 +32,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Changing the MEDIA ROOT
+MEDIA_ROOT = os.path.join(BASE_DIR, "heaven_project_app", "media") # Change last word to the folder to save the folder.
+MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c+cf6rkus!l7ix4a*o5r(j$g9-&9t_9ttjmjk#87-en@q*jy##'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,18 +56,29 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_google_sso',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'heaven_project_app'
+    'heaven_project_app',   
 ]
+
+
+
+
+
+GOOGLE_SSO_ALLOWABLE_DOMAINS = ["gmail.com"]
+GOOGLE_SSO_AUTO_CREATE_USER = True
+
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -69,6 +105,21 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'haven_project_code.wsgi.application'
+
+
+LANGUAGE_CODE = 'en'
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Spanish'),
+]
+
+USE_I18N = True
+USE_L10N = True
+
+USE_TZ = True
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
 
 
 # Database
@@ -104,18 +155,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
-
-USE_TZ = True
-
-Languages = [ 
-    ('en', 'English'),
-    ('es', 'Spanish')
-]
 
 LANGUAGE_BIDI = True
 
@@ -139,5 +181,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'lekan2410467@gmail.com'  # your Gmail
-EMAIL_HOST_PASSWORD = 'bsel yboq nlia qayu'
+EMAIL_HOST_USER = 'noreply.havenproject.w1985568@gmail.com'  # your Gmail
+EMAIL_HOST_PASSWORD = 'zjpc ofmy axof wpst'

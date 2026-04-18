@@ -1,0 +1,40 @@
+
+{% load gtts_tags %}
+{% load i18n %}
+
+{% csrf_token %}
+
+{% load gtts_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+
+
+<html>
+    <body> 
+
+        <h1>
+            {{ label }}
+
+            <a href="javascript:void(0);" class="icon"
+            onclick="TextToSpeech(this)"
+            data-audio="{% say LANGUAGE_CODE label 'extra_info' %}">
+                <i class="fa fa-volume-up"></i>
+            </a>
+        </h1>
+
+        <p>
+            {% if value %}
+                {{ value }}
+            {% else %}
+                {{ unknown_text }}
+
+                <a href="javascript:void(0);" class="icon"
+                onclick="TextToSpeech(this)"
+                data-audio="{% say LANGUAGE_CODE unknown_text 'extra_info' %}">
+                    <i class="fa fa-volume-up"></i>
+                </a>
+            {% endif %}
+        </p>
+
+    </body>
+</html>
+

@@ -1,137 +1,298 @@
 <!DOCTYPE html>
 <html>
      <!-- Use https://www.notion.com/ for motivation -->
+    
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
         {% load static %}
-
+        {% load i18n %}
+        <title>{% trans "Home" %}</title>
         
          <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
     </head>
+
+    {% csrf_token %}
+
+    {% load gtts_tags %}
+    {% get_current_language as LANGUAGE_CODE %}
+
     
     <body>
-        
-        <div class="navigation_bar">
-            <ul class="nav-bar">
-                <li><a href="{% url 'home' %}" >Home Page</a></li>
-                <li><a href="{% url 'services' %}">Services</a></li>
-                <li><a href="{% url 'chatbot' %}">ChatBot</a></li>
-                 
-                <li>
-                    <div class="dropdown">
-                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
-                          <div class="dropdown-content">    
-                        
-                            {% if user.is_authenticated %}
-                               <p style="width: 13px"> {{user.username}}</p>
+
+         
+         <div class="navigation_bar">
+                <div class="navigation_container">
+
+                    <ul class="nav-bar" id="nav-bar">
+                        <li><a href="{% url 'home' %}">{% trans "Home Page" %}</a></li>
+                        <li><a href="{% url 'services' %}">{% trans "Services" %}</a></li>
+                        <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
+
+                        <li>
+                            <div class="dropdown">
+                                {% if user.profile.profile_image %}
+
+                                <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
+
+                                {% else %}
+
+                                    <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                    
+                                {% endif %}
+                                <div class="dropdown-content">    
                                 
-                               <form action="{% url 'logout' %}" method="post"> 
-                                    {% csrf_token %}
-                                   <button class="log-out-button"> Logout </button>
-                               </form>
+                                    {% if user.is_authenticated %}
+                                    <p style="width: 13px"> {{user.username}}</p>
+                                        
+                                    <form action="{% url 'logout' %}" method="post"> 
+                                            {% csrf_token %}
+                                        <button class="log-out-button"> {% trans "Logout" %} </button>
+                                    </form>
 
-                               <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                               return confirm('This will permenantely delete your account, Are you sure?');"> 
-                                    {% csrf_token %}
-                                   <button class="delete-account-button"> Delete Account </button>
-                               </form>
+                                    <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                            {% csrf_token %}
+                                        <button class="delete-account-button"> {% trans "Delete Account" %} </button>
+                                    </form>
 
-                              
-                               
-                            
-                            {% else %} 
-                            
-                               <a href="{% url 'login' %}">Login</a>
-                               <a href="{% url 'register' %}">Register </a>
+                                    
+                                    <a href="{% url 'edit_account' %}" class="edit_account_link">{% trans "Edit Account" %}</a>
+                                    
+                                    {% else %} 
+                                    
+                                    <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                                    <a href="{% url 'register' %}">{% trans "Register" %} </a>
 
-                            {% endif %}
+                                    {% endif %}
 
+                                
+                                </div>
+                            </div>
+                        </li>
+                                
+                        
+                    </ul>
+                    
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
 
-                        </div>
-                    </div>
-                </li>
-
-                
-
-            </ul>
+                </div>
         </div>
+
        
 
         <div class="home-page-image"> 
-            <img src = "{% static 'heaven_project_code/images/home_page/SpaceX.avif' %}" width= 1000px; style="margin-left: 11%; margin-top: 10px" >
+            <img src = "{% static 'heaven_project_code/images/home_page/henning-witzel-city.jpg' %}" width=100%; >
         </div>
 
-        <a class="credentials" href="#"> Image By (Name) </a>
+        <a class="credentials" href="https://unsplash.com/photos/aerial-photography-of-cityscape-at-night-ukvgqriuOgo"> {% trans "Image By" %} Henning Witzel (Unsplash) </a>
  
 
         <div class="main-section-home"> 
-           <img src = "{% static 'heaven_project_code/images/home_page/City1.jpg' %}" width = 400px;> 
+           <img src = "{% static 'heaven_project_code/images/home_page/City1.jpg' %}" width=40%> 
            
            <div class="main-section-home-text"> 
-              <h2> Introduction </h2>
+              <h2> 
+                
+                  {% trans "Introduction" as intro_text %}  
 
-                        
-                    {% if user.is_authenticated %}
-                      
-                    {% endif %}
+                  {{  intro_text }}
+
+                  <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
+                    data-audio="{% say LANGUAGE_CODE intro_text %}">
+                    <i class="fa fa-volume-up"></i>
+                 </a>
+              </h2>
               
-              <p> We help by providing services for people to use and it will be shown on the map and its free too. </p>
+              <p> 
+                {% blocktrans trimmed asvar intro_text_main %}
+                    Welcome to the Haven Website! This platform is designed to help users find nearby services, or search for specific services they need.
+                    It is primarily aimed at individuals experiencing homelessness and other vulnerable users who may be looking for support.
+                {% endblocktrans %}
+                
+                {{ intro_text_main }}
+                
+                <a href="javascript:void(0);" class="icon"
+                    onclick="TextToSpeech(this)"
+                    data-audio="{% say LANGUAGE_CODE intro_text_main 'home' %}">
+                        <i class="fa fa-volume-up"></i>
+                </a>
+              
+              </p>
 
            </div> 
 
         </div>
 
-        <a class="credentials" href="#"> Image By (Name) </a>
+        <a class="credentials" href="https://unsplash.com/photos/black-and-white-pedestrian-lane-in-the-city-during-daytime-vEoO4R1FHrY"> {% trans "Image By" %} Paulo Silva (Unsplash) </a>
 
         <div class="main-section2-home"> 
             
             <div class="main-section-home-text"> 
-              <h2> What we do? </h2>
+              <h2> 
+                   
+                   {% trans "Why this was created?" as header_1_text %}
+                   
+                   {{ header_1_text }}
+                     
+                    <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
+                    data-audio="{% say LANGUAGE_CODE header_1_text %}">
+                    <i class="fa fa-volume-up"></i>
+                 </a>
+              </h2>
               
-              <p> We help by providing services for people to use and it will be shown on the map and its free too. </p>
-               
+                <p>
+                    {% blocktrans trimmed asvar intro_text_secondary %}
+                        Homelessness remains a global issue, and its rising rates are concerning for those affected who may not know where to find support.
+                        
+                        This platform was created to address this need by providing spaces for people experiencing homelessness or vulnerability to access support. 
+                        It’s designed to alleviate some of the hardship and distress they face.
+                    {% endblocktrans %}
+                    
+                    {{ intro_text_secondary }}
+
+                    <a href="javascript:void(0);" class="icon"
+                        onclick="TextToSpeech(this)"
+                        data-audio="{% say LANGUAGE_CODE intro_text_secondary 'home' %}">
+                            <i class="fa fa-volume-up"></i>
+                    </a>
+                </p>
+            
               
            </div> 
 
-            <img src="{% static 'heaven_project_code/images/home_page/helping-hand.jpg' %}" width=400px>
+            <img src="{% static 'heaven_project_code/images/home_page/helping-hand.jpg' %}" width=40%>
 
         </div>
 
-        <a class="credentials" href="#"> Image By (Name) </a>
+        <a class="credentials" href="https://unsplash.com/photos/two-persons-arms-iJ2IG8ckCpA"> {% trans "Image By" %} Youssef Naddam (Unsplash) </a>
         
 
         <div class="main-section3-home"> 
             
-             <img src="{% static 'heaven_project_code/images/home_page/helping-hand.jpg' %}" width=400px>
+             <img src="{% static 'heaven_project_code/images/home_page/shiwa-id-mobile-phone.jpg' %}" width=40%>
 
             <div class="main-section-home-text"> 
-              <h2> Why this is a problem? </h2>
+              <h2> 
+                  
+                 {% trans "What the platform offers?" as header_2_text %}
+
+                  {{ header_2_text }}
+                 
+                  <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
+                    data-audio="{% say LANGUAGE_CODE header_2_text %}">
+                    <i class="fa fa-volume-up"></i>
+                 </a>
+
+              </h2>
               
-              <p> We help by providing services for people to use and it will be shown on the map and its free too. </p>
-               
+                <p>
+                    {% blocktrans trimmed asvar intro_text_services %}
+                        Users can find nearby services such as food banks, shelters, and other support options using filters on the services page.
+                        By clicking on a service card, users can view more details, including its location and an integrated map. Once signed in, users can also leave reviews for each service.
+                        A chatbot is available to answer questions about the platform or help users find the nearest services.
+                    {% endblocktrans %}
+
+                    {{ intro_text_services }}
+
+                    <a href="javascript:void(0);" class="icon"
+                        onclick="TextToSpeech(this)"
+                        data-audio="{% say LANGUAGE_CODE intro_text_services 'home' %}">
+                        <i class="fa fa-volume-up"></i>
+                    </a>
+                </p>
+                
            </div> 
 
         </div>
 
-        <a class="credentials" href="#"> Image By (Name) </a>
+        <a class="credentials" href="https://unsplash.com/photos/iphone-screen-showing-icons-on-screen-Uae7ouMw91A"> {% trans "Image By" %} Shiwa ID (Unsplash) </a>
 
         <div class="footer"> 
-            <h1 style="text-align: center;"> Footer </h1>
+            <h1 style="text-align: center;"> {% trans "Footer" %} </h1>
             
             <p>© 2026 Haven Project</p>
-            <p> Email:  w1985568@westminster.ac.uk</p>
+            <p> {% trans "Email" %}:  w1985568@westminster.ac.uk</p>
             
             <p></p>
             
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_current_language as LANGUAGE_CODE %}
+
             
+                <select name="language" class="custom-select">
+                    {% for lang in LANGUAGES %}
+                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected {% endif %}>
+                            {{ lang.1 }} 
+                        </option>
+                    {% endfor %}
+                </select>
+
+                  
+                <button type="submit" class="btn btn-default"> {% trans "Save" %}</button>
+              
+            </form> 
+
 
 
         </div>
-        
+
+        <script> 
+           function myFunction() {
+              var x = document.getElementById("nav-bar");
+              x.classList.toggle("active")
+
+           }
+            
+            
+
+            function TextToSpeech(element) {
+                
+                 // Getting the icon
+                 const icon = element.querySelector("i")
+                   
+                   // Generates new audio once button has been clicked for each element.
+                   if (!element.audio) {
+                      const audioSrc = element.dataset.audio;
+                      element.audio = new Audio(audioSrc)
+
+                      element.audio.onended = () => {
+                        icon.classList.remove("fa-pause", "fa-play");
+                        icon.classList.add("fa-volume-up");
+                        element.audio = null;
+                      };
+                   }
+                
+                   // Toggle pause and play
+                   if (!element.audio.paused) {
+                        element.audio.pause()
+                        
+                        // Changes Icon
+                        icon.classList.remove("fa-pause")
+                        icon.classList.add("fa-play")
+                    
+                    }
+                    //Continues Playing Audio
+                    else {
+                        // Changes Icon
+                         icon.classList.remove("fa-play")
+                         icon.classList.add("fa-pause")
+
+                         element.audio.play()
+                    }
+                
+                }
+
+    
+        </script>        
  
     </body>
 </html>

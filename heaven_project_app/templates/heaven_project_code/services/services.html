@@ -1,88 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
      <!-- Use https://www.notion.com/ for motivation -->
+
+     <!--https://www.w3schools.com/django/django_ma5er_template.php-->
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Services</title>
         {% load static %}
+        {% load i18n %}
+
+        <title> {% trans "Services" %} </title>
 
         
          <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
     </head>
+
+    {% csrf_token %}
+
+    {% load gtts_tags %}
+    {% get_current_language as LANGUAGE_CODE %}
     
     <body>
         
-        <div class="navigation_bar">
-            <ul class="nav-bar">
-                <li><a href="{% url 'home' %}" >Home Page</a></li>
-                <li><a href="{% url 'services' %}">Services</a></li>
-                <li><a href="{% url 'chatbot' %}">ChatBot</a></li>
+         <div class="navigation_bar">
+                <div class="navigation_container">
 
-                <li>
-                    <div class="dropdown">
-                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
-                         <div class="dropdown-content">    
-                        
-                            {% if user.is_authenticated %}
-                               <p style="width: 13px"> {{user.username}}</p>
+                    <ul class="nav-bar" id="nav-bar">
+                        <li><a href="{% url 'home' %}" >{% trans "Home Page" %}</a></li>
+                        <li><a href="{% url 'services' %}">{% trans "Services" %}</a></li>
+                        <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
+
+                        <li>
+                            <div class="dropdown">
+                                {% if user.profile.profile_image %}
+
+                                <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
+
+                                {% else %}
+
+                                    <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                    
+                                {% endif %}
                                 
-                               <form action="{% url 'logout' %}" method="post"> 
-                                    {% csrf_token %}
-                                   <button class="log-out-button"> Logout </button>
-                               </form>
+                                <div class="dropdown-content">    
+                                
+                                    {% if user.is_authenticated %}
+                                    <p style="width: 13px"> {{user.username}}</p>
+                                        
+                                    <form action="{% url 'logout' %}" method="post"> 
+                                            {% csrf_token %}
+                                        <button class="log-out-button"> {% trans "Logout" %} </button>
+                                    </form>
 
-                               <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                                return confirm('This will permenantely delete your account, Are you sure?');"> 
-                                        {% csrf_token %}
-                                    <button class="delete-account-button"> Delete Account </button>
-                               </form>
+                                    <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                            {% csrf_token %}
+                                        <button class="delete-account-button"> {% trans "Delete Account" %} </button>
+                                    </form>
+                                    
+                                    <a href="{% url 'edit_account' %}" class="edit_account_link">{% trans "Edit Account" %}</a>
 
-                               
-                            {% else %} 
-                            
-                               <a href="{% url 'login' %}">Login</a>
-                               <a href="{% url 'register' %}">Register </a>
+                                    {% else %} 
+                                    
+                                    <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                                    <a href="{% url 'register' %}">{% trans "Register" %} </a>
 
-                            {% endif %}
+                                    {% endif %}
 
-                        </div>
-                    </div>
-                </li>
+                                
+                                </div>
+                            </div>
+                        </li>
+                                
+                        
+                    </ul>
+                    
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
 
-            </ul>
+                </div>
         </div>
-       
+
         
-        <div class="search-services"> 
-            <form method="get" action="">
-                    <input name="q" type="text" placeholder="Seach...">
-                    <button type="submit"> Search </button>
+        <div class="search-services" > 
 
-            </form>
-
-            <form method="POST">
-                {% csrf_token %}
+            <form method="get" id="locationForm">
                  
-                <label for="country">Country: </label>
-                <input list="country_list" id="country" name="country" placeholder="Select Country" onchange="this.form.submit()"/>
-                 
+                <!-- LOCATION BUTTON -->
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
+                <button type="button" class="btn" onclick="getLocation()"> {% trans "Use Your Location!" %}</button>
+                
+                <br><br>
 
-                {% if query %}
+                <input name="q" type="text" placeholder="{% trans 'Search' %}..." value="{{ request.GET.q }}">
+                <br><br>
+
+                <!-- Postcode search -->
+                <input type="text" name="postcode" placeholder="{% trans 'Enter Postcode' %}" value="{{ request.GET.postcode }}">
+                
+
+                <!-- Country Filter -->
+                <label for="country">{% trans "Country" %}:</label>
+                <select id="country" name="country" onchange="this.form.submit()">
+                    <option value="">{% trans "All Countries" %}</option>
+                    {% for c in countries %}
+                        <option value="{{ c.id }}" {% if c.id|stringformat:"s" == selected_country|stringformat:"s" %}selected{% endif %}>
+                            {{ c.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <!-- City Filter -->
+                <label for="city">{% trans "City" %}:</label>
+                <select id="city" name="city" onchange="this.form.submit()">
+                    <option value="">{% trans "All Cities" %}</option>
+                    {% for city in cities %}
+                        <option value="{{ city.id }}" {% if city.id|stringformat:"s" == selected_city|stringformat:"s" %}selected{% endif %}>
+                            {{ city.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+
+                <button type="submit" class="btn">{% trans "Search" %}</button>
+            
+            </form>  
+
+             {% if query %}
                    <h3>Search results for "{{ query }}" </h3>
                 {% endif %}
 
                 {% if food_banks %}
-                        <h4>Food Banks</h4>
+                        <h1>
+
+                            {% trans  "Food Banks" as food_bank_text %}
+                
+                            {{ food_bank_text }}
+
+                            <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
+                            data-audio="{% say LANGUAGE_CODE food_bank_text 'services' %}">
+                            <i class="fa fa-volume-up"></i>
+                            </a>
+                        </h1>
               
                     <div class="card-wrapper">
                         {% for fb in food_banks %}
-                            <div class="service-card">
+                            <a href= "{% url 'foodbank_details' fb.id %}" class="service-card" >
                                 <h3>{{ fb.name }}</h3>
                                 <p>{{ fb.city.name }}, {{ fb.city.country.name }}</p>
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -90,69 +162,143 @@
 
 
                 {% if shelters %}
-                        <h4> Shelters </h4>
+                        <h1> 
+
+                            {% trans  "Shelters" as shelters_text %}
+                
+                            {{ shelters_text }}
+
+                            <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
+                            data-audio="{% say LANGUAGE_CODE shelters_text 'services' %}">
+                            <i class="fa fa-volume-up"></i>
+                            </a>
+                        </h1>
               
                     <div class="card-wrapper">
                         {% for sh in shelters %}
-                            <div class="service-card">
+                            <a href= "{% url 'shelter_details' sh.id %}" class="service-card" >
                                 <h3>{{ sh.name}} </h3>
                                 <p>{{ sh.city.name }}, {{ sh.city.country.name }}</p>
-                            </div>
                         {% endfor %}
                     </div>
                 {% endif %}
 
                 {% if support_services %}
-                    <h4> Support Services </h4>
+                    <h1> 
+                    
+                        {% trans  "Support Services" as services_text %}
+                
+                        {{ services_text }}
+
+                        <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
+                            data-audio="{% say LANGUAGE_CODE services_text 'services' %} ">
+                            <i class="fa fa-volume-up"></i>
+                        </a>
+
+                    </h1>
               
                     <div class="card-wrapper">
                         {% for ss in support_services %}
-                            <div class="service-card">
-                                <h3>{{ ss.name}} </h3>
+                            <a href= "{% url 'support_service_details' ss.id %}" class="service-card" >
+                                <h3>{{ ss.name }} </h3>
                                 <p>{{ ss.city.name }}, {{ ss.city.country.name }}</p>
-                            </div>
                         {% endfor %}
                     </div>
                 {% endif %}
 
-
-
-                <datalist id="country_list"> 
-                    <option value=""> Select Country</option>
-                    
-                    {% for c in countries %} 
-                       <option value="{{ c.id }}"  {% if c.id == selected_country %} selected {% endif %}>
-                           {{c.name}}
-                       </option>
-                    {% endfor %}
-
-                </datalist>
-
-                <label for="city">City: </label>
-                <input list="city_list" id="city" name="city" placeholder="Enter City" />
-
-                <datalist id="city_list"> 
-                    <option value="">Select City: </option>
-                    
-                    {% for city in cities %} 
-                       <option value="{{ city.id }}" {% if city.id == selected_city %} selected {% endif %}> 
-                           {{city.name}}
-                       </option>
-                    {% endfor %}
-                </datalist>
-
-                <button type="submit">Submit</button>
-            </form>
+            
         </div>
 
         <div class="footer"> 
-            <h1 style="text-align: center;"> Footer </h1>
+            <h1 style="text-align: center;"> {% trans "Footer" %} </h1>
             
             <p>© 2026 Haven Project</p>
-            <p> Email:  w1985568@westminster.ac.uk</p>
+            <p> {% trans "Email" %}:  w1985568@westminster.ac.uk</p>
+
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_current_language as LANGUAGE_CODE %}
+
+            
+                <select name="language" class="custom-select">
+                    {% for lang in LANGUAGES %}
+                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected {% endif %}>
+                            {{ lang.1 }} 
+                        </option>
+                    {% endfor %}
+                </select>
+
+                  
+                <button type="submit" class="btn btn-default"> {% trans "Save" %}</button>
+              
+            </form> 
+
 
         </div>
-        
- 
+
+        <!--https://www.youtube.com/watch?v=OvDu9c8PYrk  Services-->
+
+        <script> 
+           function myFunction() {
+              var x = document.getElementById("nav-bar");
+              x.classList.toggle("active")
+
+           }
+
+             function TextToSpeech(element) {
+                
+                 // Getting the icon
+                 const icon = element.querySelector("i")
+                   
+                   // Generates new audio once button has been clicked for each element.
+                   if (!element.audio) {
+                      const audioSrc = element.dataset.audio;
+                      element.audio = new Audio(audioSrc)
+
+                      element.audio.onended = () => {
+                        icon.classList.remove("fa-pause", "fa-play");
+                        icon.classList.add("fa-volume-up");
+                        element.audio = null;
+                      };
+                   }
+                
+                   // Toggle pause and play
+                   if (!element.audio.paused) {
+                        element.audio.pause()
+                        
+                        // Changes Icon
+                        icon.classList.remove("fa-pause")
+                        icon.classList.add("fa-play")
+                    
+                    }
+                    //Continues Playing Audio
+                    else {
+                        // Changes Icon
+                         icon.classList.remove("fa-play")
+                         icon.classList.add("fa-pause")
+
+                         element.audio.play()
+                    }
+                
+                }
+           
+        </script>
+
+        <script>
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        document.getElementById("latitude").value = position.coords.latitude;
+                        document.getElementById("longitude").value = position.coords.longitude;
+
+                        document.getElementById("locationForm").submit();
+                    }, function(error) {
+                        console.log("Error:", error);
+                    });
+                }
+            }
+            </script>
+         
     </body>
 </html>

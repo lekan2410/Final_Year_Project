@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+     
+    <head>
+
+        <script src="https://accounts.google.com/gsi/client" async></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        {% load i18n %}
+
+        <title>{% trans "Delete Review" %} </title>
+
+        
+         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'heaven_project_code/google_sso/google_button.css'%}">
+    </head>
+
+   
+    {% csrf_token %}
+
+    {% load gtts_tags %}
+    {% get_current_language as LANGUAGE_CODE %}
+    
+    <body>
+
+       
+        
+        <div class="navigation_bar">
+                <div class="navigation_container">
+
+                    <ul class="nav-bar" id="nav-bar">
+                        <li><a href="{% url 'home' %}" > {% trans "Home Page" %} </a></li>
+                        <li><a href="{% url 'services' %}"> {% trans "Services" %}  </a></li>
+                        <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
+
+                        <li>
+                            <div class="dropdown">
+
+                                {% if user.profile.profile_image %}
+
+                                    <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
+
+                                {% else %}
+
+                                    <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                    
+                                {% endif %}
+                                
+                                <div class="dropdown-content">    
+                                
+                                    {% if user.is_authenticated %}
+                                    <p style="width: 13px"> {{user.username}}</p>
+                                        
+                                    <form action="{% url 'logout' %}" method="post"> 
+                                            {% csrf_token %}
+                                        <button class="log-out-button"> {% trans "Log Out" %} </button>
+                                    </form>
+
+                                    <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                            {% csrf_token %}
+                                        <button class="delete-account-button">  {% trans "Delete Account" %}</button>
+                                    </form>
+
+                                    <a href="{% url 'edit_account' %}" class="edit_account_link">{% trans "Edit Account" %}</a>
+                                    
+                                    
+                                    {% else %} 
+                                    
+                                    <a href="{% url 'login' %}">{% trans "Login"%}</a>
+                                    <a href="{% url 'register' %}"> {% trans "Register"%} </a>
+
+                                    {% endif %}
+
+                                
+                                </div>
+                            </div>
+                        </li>
+                                
+                        
+                    </ul>
+                    
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+
+                </div>
+        </div>
+
+        
+    
+        <div class="login_container">
+
+            <form method="post"> 
+                {% csrf_token %}
+
+                <p>
+                    {% trans "Are you sure you want to delete your review?" as delete_review_text %}
+
+                    {{ delete_review_text }}
+
+                    <a href="javascript:void(0);" class="icon"
+                    onclick="TextToSpeech(this)"
+                     data-audio="{% say LANGUAGE_CODE delete_review_text %}">
+                        <i class="fa fa-volume-up"></i>
+                    </a>
+                </p>
+                         
+                <button type="submit" class="btn"> {%trans "Confirm" %} </button>
+
+            </form>
+
+        </div>
+
+        <div class="footer"> 
+            <h1 style="text-align: center;">{% trans "Footer" %} </h1>
+            
+            <p>© 2026 Haven Project</p>
+            <p> {% trans "Email" %}: w1985568@westminster.ac.uk</p>
+            
+            <p></p>
+
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_current_language as LANGUAGE_CODE %}
+
+            
+                <select name="language" class="custom-select">
+                    {% for lang in LANGUAGES %}
+                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected {% endif %}>
+                            {{ lang.1 }} 
+                        </option>
+                    {% endfor %}
+                </select>
+
+                  
+                <button type="submit" class="btn">{% trans "Save" %} </button>
+              
+            
+            </form> 
+
+
+        </div>
+
+        <script> 
+           function myFunction() {
+              var x = document.getElementById("nav-bar");
+              x.classList.toggle("active")
+
+           }
+
+            function TextToSpeech(element) {
+                
+                 // Getting the icon
+                 const icon = element.querySelector("i")
+                   
+                   // Generates new audio once button has been clicked for each element.
+                   if (!element.audio) {
+                      const audioSrc = element.dataset.audio;
+                      element.audio = new Audio(audioSrc)
+
+                      element.audio.onended = () => {
+                        icon.classList.remove("fa-pause", "fa-play");
+                        icon.classList.add("fa-volume-up");
+                        element.audio = null;
+                      };
+                   }
+                
+                   // Toggle pause and play
+                   if (!element.audio.paused) {
+                        element.audio.pause()
+                        
+                        // Changes Icon
+                        icon.classList.remove("fa-pause")
+                        icon.classList.add("fa-play")
+                    
+                    }
+                    //Continues Playing Audio
+                    else {
+                        // Changes Icon
+                         icon.classList.remove("fa-play")
+                         icon.classList.add("fa-pause")
+
+                         element.audio.play()
+                    }
+                
+                }
+
+           
+
+           
+        </script>
+
+        <!-- https://www.youtube.com/watch?v=WFM_egxOqfo Language-->
+
+        <!-- https://tomdekan.com/articles/google-sign-in -->
+ 
+    </body>
+</html>

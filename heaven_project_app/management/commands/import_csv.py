@@ -2,6 +2,7 @@ import csv
 from heaven_project_app.models import (Country, City, Location, Shelters, Food_Banks, Support_Services)
 from django.core.management.base import BaseCommand
 
+# CREDIT SOURCES (WHERE I GOT DATA FROM)
 
 # from heaven_project_app.models import (
 #     Country, City,
@@ -39,7 +40,7 @@ class Command(BaseCommand):
                                 "address" : row['Street'],
                                 "city" : city,
                                 "country" : country,
-                                "post_code" : row['Postcode'],
+                                "postcode" : row['Postcode'],
                                 "phone_number" : row.get('Phone', ''),
                                 "category" : category,
                                 "type" : "Food Bank",
@@ -60,7 +61,7 @@ class Command(BaseCommand):
                                         "address" : row['Street'],
                                         "city" : city,
                                         "country" : country,
-                                        "post_code" : row['Postcode'],
+                                        "postcode" : row['Postcode'],
                                         "phone_number" : row.get('Phone', ''),
                                         "type" : 'Shelters',
                                         "category" : category,
@@ -79,7 +80,7 @@ class Command(BaseCommand):
                             "address": row['Street'],
                             "city": city,
                             "country": country,
-                            "post_code": row['Postcode'],
+                            "postcode": row['Postcode'],
                             "phone_number": row.get('Phone', ''),
                             "type": "Support Service",
                             "category": category,

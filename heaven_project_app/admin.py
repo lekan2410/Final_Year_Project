@@ -5,7 +5,6 @@ from .models import *
 
 admin.site.register(City)
 admin.site.register(Country)
-admin.site.register(Location)
 admin.site.register(Support_Services)
 admin.site.register(Shelters)
 admin.site.register(Food_Banks)

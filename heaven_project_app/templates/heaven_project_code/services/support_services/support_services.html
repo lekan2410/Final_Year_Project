@@ -1,0 +1,126 @@
+{% extends "heaven_project_code/base_template/service_base.html"%}
+
+
+{% load static %}
+
+{% load i18n %}
+
+{% csrf_token %}
+
+{% load gtts_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+
+
+{% block title %}
+Support Service Details
+{% endblock %}
+
+{% trans "Unknown" as unknown_text %}
+
+
+
+{% block content %}
+
+
+
+<div class="main-section">
+    
+    <div class="information"> 
+ 
+        {% trans "Name" as name_text %}
+        {% include "components/service_components.html" with label=name_text value=support_service.name unknown_text=unknown_text %}
+
+        {% trans "City" as city_text %}
+        {% include "components/service_components.html" with label=city_text value=support_service.city unknown_text=unknown_text %}
+
+        {% trans "Country" as country_text %}
+        {% include "components/service_components.html" with label=country_text value=support_service.country unknown_text=unknown_text %}
+
+        {% trans "Address" as address_text %}
+        {% include "components/service_components.html" with label=address_text value=support_service.address unknown_text=unknown_text %}
+
+        {% trans "Post Code / Zip Code" as postcode_text %}
+        {% include "components/service_components.html" with label=postcode_text value=support_service.postcode unknown_text=unknown_text %}
+
+        {% trans "Category" as category_text %}
+        {% include "components/service_components.html" with label=category_text value=support_service.category unknown_text=unknown_text %}
+
+        {% trans "Opening Times" as opening_text %}
+        {% include "components/service_components.html" with label=opening_text value=support_service.opening_times unknown_text=unknown_text %}
+
+        {% trans "Phone Number" as phone_text %}
+        {% include "components/service_components.html" with label=phone_text value=support_service.phone_number unknown_text=unknown_text %}
+
+        {% trans "Type" as type_text %}
+        {% include "components/service_components.html" with label=type_text value=support_service.type unknown_text=unknown_text %}
+
+        {% trans "Extra Information" as extra_text %}
+        {% include "components/service_components.html" with label=extra_text value=support_service.info unknown_text=unknown_text %}
+
+       
+
+        <!-- W3Schools used for Google Maps -->
+       
+        <div class="map-container">
+            <h1>Google Map</h1>
+            
+            <iframe
+                  src="https://www.google.com/maps?q={{ support_service.latitude }},{{ support_service.longitude }}, {{ support_service.postcode }}&z=17&output=embed&hl={{ LANGUAGE_CODE }}"
+                  width="100%"
+                  height="100%">
+            </iframe>
+        </div>
+        
+        <br>
+
+        <form method = "post" class="fields" style="margin-right: 20%">
+               {% if user.is_authenticated %}
+                     {% csrf_token %}
+                     {{ form }}
+
+                     <button type = "submit" class="btn" style="margin-left: 18%; border-radius: 10px;"> {% trans  "Submit"%} </button>
+
+               {% else %}
+                     <p style="text-align:center"> Log in to leave a review! </p>
+               {% endif %}
+         
+
+                <br>
+            
+            </form>
+
+             <div class="card-wrapper">
+                  {% for review in reviews %}
+                        <div class="review-card">
+
+                           {% if review.user.profile.profile_image %}
+
+                                <img class="profile_picture" src="{{review.user.profile.profile_image.url}}"/>
+
+                           {% else %}
+
+                                <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                
+                           {% endif %}
+                           
+                           <h3>{{ review.name }} </h3>
+                           <p>{{ review.get_rating_display }} </p>
+                           <p>{% trans "Easy To Access" %}: {{ review.get_easy_access_q_display }}</p>
+                           <p>{% trans "Staff Were Friendly" %}: {{ review.get_staff_q_display }}</p>
+                           <p>{% trans "Recommend To Others" %}: {{ review.get_recommend_q_display }}</p>
+                            
+                           {% if review.user == request.user %} 
+                             <a href="{% url 'delete_review_support_service' review.pk %}" class="btn" style="background-color: red"> Delete </a> <br><br><br>
+                             <a href="{% url 'update_review_support_service' review.pk %}" class="btn"> Update </a>
+                           {% endif %}
+                              
+                        </div>
+                  {% endfor %}
+             </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

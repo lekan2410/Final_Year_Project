@@ -1,7 +1,14 @@
+
+
+/* Just in case: font-family: 'Comic Neue', Comic Sans MS, cursive; */
 body {
-     background-color: #f5f5f5;
-     color: #666666;
-     font-family: 'Comic Neue', Comic Sans MS, cursive;
+    background-color: #f5f5f5;
+    color: #666666;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
 }
 
 .login_container {
@@ -44,7 +51,7 @@ body {
 .nav-bar {
   display: flex;
   list-style-type: none;
-  gap: 25%;
+  gap: 20%;
   margin: 0;
   margin-left: 23%;
   padding: 0;
@@ -63,12 +70,124 @@ body {
     text-decoration-color: #666666;
 }
 
+.navigation_container {
+    position: relative;
+}
+
+.navigation_container a.icon {
+    display: none;
+
+}
+
+
+@media screen and (max-width:768px) {
+
+    .login-page-img {
+        max-width: 100%;
+        margin-left: 2.5%;
+    }
+
+
+    .navigation_container a.icon {
+        display: block;
+        background-color: black;
+        color: white;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    .nav-bar {
+        list-style: none;
+        text-decoration: none;
+        padding: 0;
+        margin: 0;
+        display: none;
+        flex-direction: column;
+        gap: 40px;
+        margin-top: 50px;
+    }
+
+    .nav-bar li {
+        margin-bottom: 40px;
+    }
+
+    .nav-bar.active {
+        display: flex;
+    }
+
+    .nav-bar a, .nav-bar a:visited {
+        background-color: #2563EB;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+
+        text-decoration: none;
+
+        padding: 20px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+
+        margin-bottom: 100px;
+
+        cursor: pointer;
+
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown {
+        float: right;
+        bottom: 340px;
+    }
+
+    .dropdown-content {
+        display: block !important;  
+        position: static;            
+        box-shadow: none;          
+        background: transparent;   
+    }
+
+    .dropdown-content  a{
+        margin-bottom: 20px;
+        margin-right: 70px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block; 
+    }
+
+
+    .main-section-home img, .main-section2-home img, .main-section3-home img {
+        width: 100%;
+    }
+
+    .main-section2-home img {
+        order: -1;
+    }
+
+   
+    .main-section-home, .main-section2-home, .main-section3-home {
+        flex-direction: column;
+    }
+
+    .edit_account_link {
+        width: 83%;
+    }
+
+    .dropdown-content a, .dropdown-content a:visited {
+        color: white;
+    }
+    
+    
+}
+
+
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: pink;
     color: white;
-    padding: 16px;
+    padding: 15px;
     font-size: 16px;
     border: none;
 }
@@ -80,6 +199,7 @@ body {
 
 .dropdown-content {
     display: none;
+    background-color: white;
     position: absolute;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -87,12 +207,22 @@ body {
 
 }
 
-.dropdown-content a {
+.dropdown-content a, .dropdown-content a:visited {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    
 }
+
+
+
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block; }
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 .delete-account-button {
     display: inline-block;
@@ -100,12 +230,28 @@ body {
 
     color: white;
     
-    padding-right: 100px;
+    border: none;
 
-    width: 30px;
+    border-radius: 8px;
+
+    width: 100%;
+
+    text-decoration: none;
+
+    padding: 20px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    margin-bottom: 20px;
+
     cursor: pointer;
-    
+
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        
 }
+
 
 .log-out-button {
     display: inline-block;
@@ -113,18 +259,74 @@ body {
 
     color: white;
     
-    padding-right: 100px;
+    border: none;
 
-    width: 10px;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    padding: 20px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    margin-bottom: 20px;
+
+    width: 100%;
+
     cursor: pointer;
-    
+
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.edit_account_link {
+    display: inline-block;
+    background-color: #2563EB;
 
-.dropdown:hover .dropdown-content {display: block;}
+    color: white !important;
+    
+    border: none;
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+    border-radius: 8px;
+
+    text-decoration: none;
+
+
+    padding: 20px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    margin-bottom: 20px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        
+}
+
+.edit_account_link:hover {
+    background-color: #2563EB;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.delete-account-button:hover{
+  background-color: red;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.log-out-button:hover  {
+  background-color: orange;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
 
 /* Home Page */
 
@@ -142,10 +344,26 @@ body {
 }
 
 
+.main-section {
+    text-align: center;
+    align-items: flex-end;
+    max-width: 40%;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.information-service {
+    text-align: left;
+}
+
 .main-section-home {
     display: flex; 
     gap: 2rem;
-    max-width: 1000px;
+    max-width: 80%;
     margin: auto;
     padding: 2rem;
     margin-top: 20vh;
@@ -172,7 +390,7 @@ body {
 .main-section2-home {
     display: flex;
     gap: 2rem;
-    max-width: 1000px;
+    max-width: 80%;
     margin: auto;
     padding: 2rem;
     margin-top: 20vh;
@@ -185,7 +403,7 @@ body {
 .main-section3-home {
     display: flex; 
     gap: 2rem;
-    max-width: 1000px;
+    max-width: 80%;
     margin: auto;
     padding: 2rem;
     margin-top: 20vh;
@@ -224,6 +442,8 @@ body {
 }
 
 .service-card {
+    text-decoration: none;
+    color: inherit;
     width: 280px; 
     gap: 0.5rem;
     margin: auto;
@@ -233,6 +453,28 @@ body {
     border: 1px solid #e0e0e0;
     background-color: #fff;
     border-radius: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease
+}
+
+.review-card {
+    text-decoration: none;
+    color: inherit;
+    width: 280px; 
+    gap: 0.5rem;
+    margin: auto;
+    padding: 1.5rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    border-radius: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease
+}
+
+
+.service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0px 35px rgba(0,0,0,0.15)
 }
 
 .search-services {
@@ -246,3 +488,83 @@ body {
     text-align: center;
 }
 
+/* Edit Account */
+
+.edit_container {
+    max-width: 400px;
+    margin: auto;
+    text-decoration: none;
+    padding: 2rem;
+    margin-top: 20vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+
+.profile_picture {
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+    text-align: center;
+    width: 30%;
+    border-radius: 50%;
+}
+
+/* Button Design provided by ChatGPT */
+
+/* Button design */
+.btn{
+  background-color: #2563EB;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.btn:hover  {
+  background-color: #1D4ED8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Click effect */
+.btn:active, .delete-account-button:active, .log-out-button:active{
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus (accessibility 👇) */
+.btn:focus, .delete-account-button:focus, .log-out-button:focus{
+  outline: 3px solid #93C5FD;
+  outline-offset: 2px;
+}
+
+/* Google Map */
+
+.map-container {
+    position: relative;
+    width: 100%;       
+    padding-bottom: 56.25%;  
+   
+}
+
+.map-container iframe {
+    position: absolute;  
+    top: 0;             
+    left: 0;             
+    width: 100%;       
+    height: 100%;       
+}

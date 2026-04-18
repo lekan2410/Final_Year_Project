@@ -1,0 +1,20 @@
+ 
+ /* Button Design provided by https://getcssscan.com/css-buttons-examples (Button 56) */
+  
+button {
+ background-color: #87CEEB;
+ border-radius: 4px;
+ color: #fff;
+ cursor: pointer;
+ padding: 15px 30px;
+ font-size: 12px;
+ font-weight: bold;
+ letter-spacing: 1px;
+ border: none;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0px 35px rgba(0,0,0,0.15)
+
+}

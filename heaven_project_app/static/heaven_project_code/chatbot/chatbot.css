@@ -1,0 +1,50 @@
+
+/* Solution provided by Chatgpt and modified to suit the website */
+.chat-box-container {
+            max-width: 400px;
+            padding: 2rem;
+            margin: auto;
+            margin-top: 20vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            background-color: #fff;
+            border-radius: 20px;
+}
+
+.message { 
+    max-width: 50%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.user{
+    align-self: flex-end;
+    background-color: blue;
+    color: white;
+}
+
+.bot {
+    align-self: flex-start;
+    background-color: #e5e5ea;
+}
+
+.user::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #007bff;
+}
+
+.bot::after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #e5e5ea transparent transparent;
+}

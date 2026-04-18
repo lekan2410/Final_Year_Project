@@ -1,0 +1,299 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-20 16:27+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+#: .\heaven_project_app\templates\heaven_project_code\login_register\login.html:24
+
+
+msgid "Submit"
+msgstr "Entregar"
+
+# NAVIGATION BAR
+
+msgid "Home Page"
+msgstr "Página Principal"
+
+msgid "Chatbot"
+msgstr "Robot De Chat"
+
+msgid "Services"
+msgstr "Servicios"
+
+msgid "Login Page"
+msgstr "Página de inicio de sesión"
+
+msgid "Log Out"
+msgstr "Finalizar la sesion"
+
+msgid "Delete Account"
+msgstr "Eliminar Cuenta"
+  
+msgid "Login"
+msgstr "Acceso"
+
+msgid "Register"
+msgstr "Registro"
+
+
+msgid "Save"
+msgstr "Ahorrar"
+
+# FOOTER
+
+msgid "Footer"
+msgstr "Pie de página"
+
+msgid "Email"
+msgstr "Correo Electrónico"
+
+# Login
+
+msgid "Forgot Password?"
+msgstr "¿Has olvidado tu contraseña?"
+
+msgid "Don't Have an Account? Sign Up!"
+msgstr "¿No tienes cuenta? ¡Regístrate!"
+
+# REGISTER
+
+msgid "Register Page"
+msgstr "Página de registro"
+
+msgid "Sign Up!"
+msgstr "¡Regístrate!"
+
+
+msgid "Already have an account, Login!"
+msgstr "Ya tienes una cuenta, ¡Inicia sesión!"
+
+# HOME PAGE
+
+msgid "Introduction"
+msgstr "Introducción"
+
+msgid "Image By"
+msgstr "Imagen por"
+
+
+msgid "Why this was created?"
+msgstr "¿Por qué se creó esto?"
+
+msgid "Homelessness remains a global issue, and its rising rates are concerning for those affected who may not know where to find support. \
+This platform was created to address this need by providing spaces for people experiencing homelessness or vulnerability to access support. \
+It’s designed to alleviate some of the hardship and distress they face."
+msgstr "La falta de hogar sigue siendo un problema global, y el aumento de su tasa es preocupante para quienes se ven afectados y no saben dónde encontrar apoyo. \
+Esta plataforma fue creada para abordar esta necesidad, proporcionando espacios donde las personas que experimentan la falta de hogar o vulnerabilidad puedan acceder a apoyo.\
+Está diseñada para aliviar parte de las dificultades y el sufrimiento que enfrentan."
+
+msgid "What the platform offers?"
+msgstr "¿Qué ofrece la plataforma?"
+
+
+msgid "Users can find nearby services such as food banks, shelters, and other support options using filters on the services page. By clicking on a service card, users can view more details, including its location and an integrated map. Once signed in, users can also leave reviews for each service. A chatbot is available to answer questions about the platform or help users find the nearest services."
+msgstr "Los usuarios pueden encontrar servicios cercanos como bancos de alimentos, refugios y otras opciones de apoyo utilizando los filtros en la página de servicios. Al hacer clic en una tarjeta de servicio, los usuarios pueden ver más detalles, incluida su ubicación y un mapa integrado. Una vez iniciada la sesión, los usuarios también pueden dejar reseñas sobre cada servicio. Un chatbot está disponible para responder preguntas sobre la plataforma o ayudar a los usuarios a encontrar los servicios más cercanos."
+
+
+msgid "Welcome to the Haven Website! This platform is designed to help users find nearby services, or search for specific services they need. It is primarily aimed at individuals experiencing homelessness and other vulnerable users who may be looking for support." 
+msgstr "¡Bienvenido al sitio web de Haven! Esta plataforma está diseñada para ayudar a los usuarios a encontrar servicios cercanos o buscar servicios específicos que necesiten. Está principalmente dirigida a personas que experimentan la falta de hogar y otros usuarios vulnerables que puedan estar buscando apoyo."
+
+
+msgid "Why is this a problem?"
+msgstr "¿Por qué es esto un problema?"
+
+
+# SERVICE PAGE
+
+msgid "Use Your Location!"
+msgstr "¡Utiliza tu ubicación!"
+
+msgid "Enter Postcode"
+msgstr "Ingrese código postal."
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "City"
+msgstr "Ciudad"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Unknown"
+msgstr "Desconocido"
+
+msgid "Post Code"
+msgstr "Código Postal"
+
+msgid "All Countries"
+msgstr "Todos Los Países"
+
+msgid "All Cities"
+msgstr "Todos Las Ciudades"
+
+msgid "Food Banks"
+msgstr "Bancos de Alimentos"
+
+msgid "Support Services"
+msgstr "Servicios de Soporte"
+
+msgid "Shelters"
+msgstr "Refugios"
+
+msgid "Opening Times"
+msgstr "Horarios de apertura"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Address"
+msgstr "Dirección"
+
+msgid "Phone Number"
+msgstr "Número de Teléfono"
+
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+msgid "Type"
+msgstr "Tipo"
+
+# Chatbot Page
+msgid "Send"
+msgstr "Enviar"
+
+# Edit Page
+
+msgid "Edit Page"
+msgstr "Editar Página"
+
+msgid "Change Password"
+msgstr "Cambiar Contraseña"
+
+msgid "Update Email"
+msgstr "Actualizar Correo Electrónico"
+
+msgid "Update Profile"
+msgstr "Actualizar Perfil"
+
+msgid "Update Profile Picture"
+msgstr "Actualizar Imagen de Perfil"
+
+msgid "Edit Account"
+msgstr "Editar Cuenta"
+
+msgid "Change Email"
+msgstr "Cambiar Correo Electrónico"
+
+msgid "Enter new email here"
+msgstr "Ingresa el nuevo correo electrónico aquí"
+
+msgid "Email Verification"
+msgstr "Verificación de Correo Electrónico"
+
+msgid "Once Verified, your new email will be saved."
+msgstr "Una vez verificado, tu nuevo correo electrónico será guardado."
+
+# Verify Email
+
+msgid "Check your email to verify your account."
+msgstr "Revisa tu correo electrónico para verificar tu cuenta."
+
+msgid "Once Verified, you can log in."
+msgstr "Una vez verificado, podrás iniciar sesión."
+
+# Chatbot
+
+msgid "Type a message"
+msgstr "Escribe un mensaje"
+
+
+# Forms
+
+# REGISTER FORM
+
+msgid "For privacy, use a nickname. Your username is not your real name."
+msgstr "Por privacidad, usa un apodo. Tu nombre de usuario no es tu nombre real."
+
+msgid "Enter email for verification."
+msgstr "Introduce tu correo electrónico para verificación."
+
+
+# REVIEW FORM
+
+msgid "Was this service easy to access?"
+msgstr "¿Fue fácil acceder a este servicio?"
+
+msgid "Were the staff friendly?"
+msgstr "¿El personal fue amable?"
+
+msgid "Would you recommend this food bank?"
+msgstr "¿Recomendarías este banco de alimentos?"
+
+msgid "Yes"
+msgstr "Sí"
+
+msgid "No"
+msgstr "No"
+
+msgid "Username"
+msgstr "Nombre de usuario"
+
+msgid "Rating"
+msgstr "Valoración"
+
+
+# PASSWORD FORMS
+
+msgid "Enter your password please"
+msgstr "Introduce tu contraseña"
+
+msgid "Re-enter your password please"
+msgstr "Vuelve a introducir tu contraseña"
+
+
+# USERNAME FORMS
+
+msgid "Enter Username"
+msgstr "Introduce el nombre de usuario"
+
+# REVIEW EXTENSTION
+
+msgid "This will permanently delete your account. Are you sure?"
+msgstr "Esto eliminará tu cuenta de forma permanente. ¿Estás seguro?"
+
+msgid "Update"
+msgstr "Actualizar"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Easy To Access"
+msgstr "Fácil de acceder"
+
+msgid "Staff Were Friendly"
+msgstr "El personal fue amable"
+
+msgid "Recommend To Others"
+msgstr "Recomendar a otros"
+
+msgid "Confirm"
+msgstr "Confirmar"
+
+msgid "Are you sure you want to delete your review?"
+msgstr "¿Estás seguro de que quieres eliminar tu reseña?"
