@@ -182,4 +182,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'noreply.havenproject.w1985568@gmail.com'  # your Gmail
-EMAIL_HOST_PASSWORD = 'zjpc ofmy axof wpst'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
