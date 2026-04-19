@@ -26,4 +26,5 @@ def say(lang, text, page="default"):
         tts = gTTS(text=text, lang=lang)
         tts.save(filepath)
     
-    return os.path.join(settings.MEDIA_URL, page, lang, filename)
+     # Return proper URL for HTML
+    return f"{settings.MEDIA_URL}{page}/{lang}/{filename}"

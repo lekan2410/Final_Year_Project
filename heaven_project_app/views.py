@@ -188,7 +188,7 @@ def enter_email_verification(request):
                          fail_silently=False
                     )
                except User.DoesNotExist:
-                    pass
+                     return HttpResponse("The email address you entered is not associated with any account. Please try again.")
 
                return redirect("enter_email_verification")   
      else: 
