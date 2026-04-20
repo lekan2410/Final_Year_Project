@@ -13,6 +13,7 @@ body {
 
 .login_container {
             max-width: 400px;
+            width: 90%;
             margin: auto;
             padding: 2rem;
             margin-top: 20vh;
@@ -176,7 +177,7 @@ body {
     }
 
     .dropdown-content a, .dropdown-content a:visited {
-        color: white;
+        color: white !important;
     }
     
     
@@ -347,7 +348,8 @@ body {
 .main-section {
     text-align: center;
     align-items: flex-end;
-    max-width: 40%;
+    max-width: 400px;
+    width: 90%;
     margin: auto;
     padding: 2rem;
     margin-top: 20vh;
@@ -492,6 +494,7 @@ body {
 
 .edit_container {
     max-width: 400px;
+    width: 90%;
     margin: auto;
     text-decoration: none;
     padding: 2rem;
