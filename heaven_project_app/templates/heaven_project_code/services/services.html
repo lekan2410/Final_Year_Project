@@ -179,6 +179,7 @@
                             <a href= "{% url 'shelter_details' sh.id %}" class="service-card" >
                                 <h3>{{ sh.name}} </h3>
                                 <p>{{ sh.city.name }}, {{ sh.city.country.name }}</p>
+                            </a>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -202,7 +203,9 @@
                             <a href= "{% url 'support_service_details' ss.id %}" class="service-card" >
                                 <h3>{{ ss.name }} </h3>
                                 <p>{{ ss.city.name }}, {{ ss.city.country.name }}</p>
+                            </a>
                         {% endfor %}
+
                     </div>
                 {% endif %}
 

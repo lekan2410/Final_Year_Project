@@ -1,6 +1,11 @@
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+
+#For Pythonanywhere
+#dotenv_path = Path("/home/w1985568/Final_Year_Project/haven_project_code/.env")
+
+#load_dotenv(dotenv_path)
  
 load_dotenv()
  
