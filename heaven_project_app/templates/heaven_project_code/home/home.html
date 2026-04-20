@@ -55,8 +55,8 @@
                                     </form>
 
                                     <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
-                                            {% csrf_token %}
+                                    return confirm('{% trans "This will permanently delete your account. are you sure?" %}');">
+                                        {% csrf_token %}
                                         <button class="delete-account-button"> {% trans "Delete Account" %} </button>
                                     </form>
 

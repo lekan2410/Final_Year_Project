@@ -1,3 +1,5 @@
+from django.utils import timezone
+from datetime import timedelta
 import os
 
 
@@ -25,6 +27,8 @@ from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
+
+
 
 pairs = [
      [r"hi|hello|hey|yo", ["Hello! How can I help you today?",
@@ -115,6 +119,11 @@ def delete_account(request):
 
 def register(request):
 
+     # Set threshold to 20 minutes ago
+     threshold = timezone.now() - timedelta(minutes=5)
+     # Delete inactive users older than 20 minutes
+     User.objects.filter(is_active=False, date_joined__lt=threshold).delete()
+
      if request.user.is_authenticated:
           logout(request)
      
@@ -150,7 +159,7 @@ def register(request):
 
 # ChatGPT used to help create verification email.
 
-def verify_email(uidb64, token):
+def verify_email(request, uidb64, token):
      try:
           uid = urlsafe_base64_decode(uidb64).decode()
           user = User.objects.get(pk=uid)
@@ -160,9 +169,11 @@ def verify_email(uidb64, token):
      if user and default_token_generator.check_token(user, token):
           user.is_active = True
           user.save()
-          return HttpResponse("Email verified! You can now log in" )
+          return redirect('login')
      else:
           return HttpResponse("Invalid or expired verification link")
+
+
 
 def enter_email_verification(request):
      if request.method =="POST":

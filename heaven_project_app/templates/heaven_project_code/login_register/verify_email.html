@@ -21,56 +21,66 @@
     
     <body>
         
-        <div class="navigation_bar">
-            <ul class="nav-bar">
-                <li><a href="{% url 'home' %}" >Home Page</a></li>
-                <li><a href="{% url 'services' %}">Services</a></li>
-                <li><a href="{% url 'chatbot' %}">ChatBot</a></li>
-                 
-                <li>
-                    <div class="dropdown">
-                           {% if user.profile.profile_image %}
+         <div class="navigation_bar">
+                <div class="navigation_container">
+
+                    <ul class="nav-bar" id="nav-bar">
+                        <li><a href="{% url 'home' %}">{% trans "Home Page" %}</a></li>
+                        <li><a href="{% url 'services' %}">{% trans "Services" %}</a></li>
+                        <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
+
+                        <li>
+                            <div class="dropdown">
+                                {% if user.profile.profile_image %}
 
                                 <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
 
-                            {% else %}
+                                {% else %}
 
-                                <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                    <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                    
+                                {% endif %}
+                                <div class="dropdown-content">    
                                 
-                            {% endif %}
-                            
-                          <div class="dropdown-content">    
+                                    {% if user.is_authenticated %}
+                                    <p style="width: 13px"> {{user.username}}</p>
+                                        
+                                    <form action="{% url 'logout' %}" method="post"> 
+                                            {% csrf_token %}
+                                        <button class="log-out-button"> {% trans "Logout" %} </button>
+                                    </form>
+
+                                    <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                            {% csrf_token %}
+                                        <button class="delete-account-button"> {% trans "Delete Account" %} </button>
+                                    </form>
+
+                                    
+                                    <a href="{% url 'edit_account' %}" class="edit_account_link">{% trans "Edit Account" %}</a>
+                                    
+                                    {% else %} 
+                                    
+                                    <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                                    <a href="{% url 'register' %}">{% trans "Register" %} </a>
+
+                                    {% endif %}
+
+                                
+                                </div>
+                            </div>
+                        </li>
+                                
                         
-                            {% if user.is_authenticated %}
-                               <p style="width: 13px"> {{user.username}}</p>
-                                
-                               <form action="{% url 'logout' %}" method="post"> 
-                                    {% csrf_token %}
-                                   <button class="log-out-button"> Logout </button>
-                               </form>
+                    </ul>
+                    
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
 
-                               <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                               return confirm('This will permenantely delete your account, Are you sure?');"> 
-                                    {% csrf_token %}
-                                   <button class="delete-account-button"> Delete Account </button>
-                               </form>
-
-                              <a href="{% url 'edit_account' %}">{% trans "Edit Account" %}</a>
-                               
-                            
-                            {% else %} 
-                            
-                               <a href="{% url 'login' %}">Login</a>
-                               <a href="{% url 'register' %}">Register </a>
-
-                            {% endif %}
-
-
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                </div>
         </div>
+
        
 
         <div class="main-section-home">                     
@@ -86,7 +96,7 @@
                 <i class="fa fa-volume-up"></i>
                 </a>
             <h3> 
-            <p> Once Verified, you can log in. 
+            <p> 
                 
                 {% trans  "Once Verified, you can log in." as verify %}
     
