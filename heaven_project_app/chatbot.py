@@ -30,8 +30,14 @@ pairs = [
      [r"features|feature", ["Users can leave reviews on services, <br><br> - edit their profile and use me to find out more information, <br><br> - navigate the website or use me to tell jokes!"]],
      
      [r"(commands)", ["Here are some things you can type:<br><br>"
-               "- 'nearest food bank/nearest shelter/nearest support service?'<br><br>"
-               "- 'specific food bank/specific shelter/ specific support service"
+               "- 'nearest food bank'<br>"
+               "- 'nearest shelter'<br>"
+               "- 'nearest support_service'<br><br>"
+
+               "- 'specific food bank'<br>"
+               "- 'specific shelter'<br>"
+               "- 'specifc support service'<br><br>"
+
                "- 'Where can I find support services?'<br><br>"
                "- 'Tell me a joke'<br><br>"
                "- 'What can you do?'<br><br>"
@@ -42,7 +48,7 @@ pairs = [
                "- 'Bye' or 'Exit' to leave the chat<br><br>"
                "You don’t have to type these exactly—I’ll try to understand similar questions too!"]],
      
-     [r"Limitations on Location|limitation on location", ["Services available are only based on Cambridge due to early stages of development. <br><br> Use postcodes that are in Cambridge. <br><br> Using other postcodes outside of Cambridge may or may not return nearest results. <br><br> More Services will be available in the future."]],
+     [r"Limitations on Location|limitations on location", ["Services available are only based on Cambridge due to early stages of development. <br><br> Use postcodes that are in Cambridge. <br><br> Using other postcodes outside of Cambridge may or may not return nearest results. <br><br> More Services will be available in the future."]],
      
      [r"Specific Food Bank|specific food bank", ["SPECIFIC FOOD BANK"]],
 
