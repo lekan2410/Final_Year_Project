@@ -341,3 +341,6 @@ msgstr "Área"
 msgid "All Areas"
 msgstr "Todas las áreas"
 
+msgid "Check your email to verify your account within 20 minutes or account will be removed from the system and you will have to register again."
+msgstr "Revisa tu correo electrónico para verificar tu cuenta dentro de 20 minutos o tu cuenta será eliminada del sistema y tendrás que registrarte nuevamente."
+
