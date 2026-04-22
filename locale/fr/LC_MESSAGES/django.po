@@ -1,0 +1,334 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: .\heaven_project_app\templates\heaven_project_code\services\food_bank\delete_review_foodbank.html:12
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-22 13:13+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\heaven_project_app\forms.py:12 .\heaven_project_app\forms.py:24
+
+msgid "Submit"
+msgstr "Soumettre"
+
+# NAVIGATION BAR
+
+msgid "Home Page"
+msgstr "Page d’accueil"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Services"
+msgstr "Services"
+
+msgid "Login Page"
+msgstr "Page de connexion"
+
+msgid "Log Out"
+msgstr "Se déconnecter"
+
+msgid "Delete Account"
+msgstr "Supprimer le compte"
+
+msgid "Login"
+msgstr "Connexion"
+
+msgid "Register"
+msgstr "S’inscrire"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+# FOOTER
+
+msgid "Footer"
+msgstr "Pied de page"
+
+msgid "Email"
+msgstr "E-mail"
+
+# Login
+
+msgid "Forgot Password?"
+msgstr "Mot de passe oublié ?"
+
+msgid "Don't Have an Account? Sign Up!"
+msgstr "Vous n’avez pas de compte ? Inscrivez-vous !"
+
+# REGISTER
+
+msgid "Register Page"
+msgstr "Page d’inscription"
+
+msgid "Sign Up!"
+msgstr "S’inscrire !"
+
+msgid "Already have an account, Login!"
+msgstr "Vous avez déjà un compte, connectez-vous !"
+
+# HOME PAGE
+
+msgid "Introduction"
+msgstr "Introduction"
+
+msgid "Image By"
+msgstr "Image par"
+
+msgid "Why this was created?"
+msgstr "Pourquoi cela a-t-il été créé ?"
+
+msgid "Homelessness remains a global issue, and its rising rates are concerning for those affected who may not know where to find support. This platform was created to address this need by providing spaces for people experiencing homelessness or vulnerability to access support. It’s designed to alleviate some of the hardship and distress they face."
+msgstr "Le sans-abrisme reste un problème mondial, et l’augmentation de son taux est préoccupante pour les personnes concernées qui peuvent ne pas savoir où trouver de l’aide. Cette plateforme a été créée pour répondre à ce besoin en offrant des espaces permettant aux personnes sans abri ou vulnérables d’accéder à du soutien. Elle est conçue pour alléger une partie des difficultés et de la détresse qu’elles rencontrent."
+
+msgid "What the platform offers?"
+msgstr "Que propose la plateforme ?"
+
+msgid "Users can find nearby services such as food banks, shelters, and other support options using filters on the services page. By clicking on a service card, users can view more details, including its location and an integrated map. Once signed in, users can also leave reviews for each service. A chatbot is available to answer questions about the platform or help users find the nearest services."
+msgstr "Les utilisateurs peuvent trouver des services à proximité tels que des banques alimentaires, des refuges et d’autres options de soutien en utilisant les filtres sur la page des services. En cliquant sur une carte de service, les utilisateurs peuvent voir plus de détails, y compris son emplacement et une carte intégrée. Une fois connectés, les utilisateurs peuvent également laisser des avis pour chaque service. Un chatbot est disponible pour répondre aux questions sur la plateforme ou aider les utilisateurs à trouver les services les plus proches."
+
+msgid "Welcome to the Haven Website! This platform is designed to help users find nearby services, or search for specific services they need. It is primarily aimed at individuals experiencing homelessness and other vulnerable users who may be looking for support."
+msgstr "Bienvenue sur le site Haven ! Cette plateforme est conçue pour aider les utilisateurs à trouver des services à proximité ou à rechercher des services spécifiques dont ils ont besoin. Elle est principalement destinée aux personnes sans abri et à d’autres utilisateurs vulnérables pouvant avoir besoin de soutien."
+
+msgid "Why is this a problem?"
+msgstr "Pourquoi est-ce un problème ?"
+
+# SERVICE PAGE
+
+msgid "Use Your Location!"
+msgstr "Utilisez votre position !"
+
+msgid "Enter Postcode"
+msgstr "Entrez le code postal"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "City"
+msgstr "Ville"
+
+msgid "Country"
+msgstr "Pays"
+
+msgid "Unknown"
+msgstr "Inconnu"
+
+msgid "Post Code"
+msgstr "Code postal"
+
+msgid "All Countries"
+msgstr "Tous les pays"
+
+msgid "All Cities"
+msgstr "Toutes les villes"
+
+msgid "Food Banks"
+msgstr "Banques alimentaires"
+
+msgid "Support Services"
+msgstr "Services de soutien"
+
+msgid "Shelters"
+msgstr "Refuges"
+
+msgid "Opening Times"
+msgstr "Horaires d’ouverture"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+msgid "Extra Information"
+msgstr "Informations supplémentaires"
+
+msgid "Type"
+msgstr "Type"
+
+# Chatbot Page
+
+msgid "Send"
+msgstr "Envoyer"
+
+# Edit Page
+
+msgid "Edit Page"
+msgstr "Page de modification"
+
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
+msgid "Update Email"
+msgstr "Mettre à jour l’e-mail"
+
+msgid "Update Profile"
+msgstr "Mettre à jour le profil"
+
+msgid "Update Profile Picture"
+msgstr "Mettre à jour la photo de profil"
+
+msgid "Edit Account"
+msgstr "Modifier le compte"
+
+msgid "Change Email"
+msgstr "Changer l’e-mail"
+
+msgid "Enter new email here"
+msgstr "Entrez le nouvel e-mail ici"
+
+msgid "Email Verification"
+msgstr "Vérification de l’e-mail"
+
+msgid "Once Verified, your new email will be saved."
+msgstr "Une fois vérifié, votre nouvel e-mail sera enregistré."
+
+# Verify Email
+
+msgid "Verify your email within 20 minutes, or your account will be deleted and you’ll need to register again."
+msgstr "Vérifiez votre e-mail dans les 20 minutes, sinon votre compte sera supprimé et vous devrez vous réinscrire."
+
+msgid "Once Verified, you can log in."
+msgstr "Une fois vérifié, vous pourrez vous connecter."
+
+# Chatbot
+
+msgid "Type a message"
+msgstr "Écrivez un message"
+
+# Forms
+
+# REGISTER FORM
+
+msgid "For privacy, use a nickname. Your username is not your real name."
+msgstr "Pour des raisons de confidentialité, utilisez un pseudonyme. Votre nom d’utilisateur n’est pas votre vrai nom."
+
+msgid "Enter email for verification."
+msgstr "Entrez votre e-mail pour vérification."
+
+# REVIEW FORM
+
+msgid "Was this service easy to access?"
+msgstr "Ce service était-il facile d’accès ?"
+
+msgid "Were the staff friendly?"
+msgstr "Le personnel était-il aimable ?"
+
+msgid "Would you recommend this food bank?"
+msgstr "Recommanderiez-vous cette banque alimentaire ?"
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid "No"
+msgstr "Non"
+
+msgid "Username"
+msgstr "Nom d’utilisateur"
+
+msgid "Rating"
+msgstr "Évaluation"
+
+# PASSWORD FORMS
+
+msgid "Enter your password please"
+msgstr "Veuillez entrer votre mot de passe"
+
+msgid "Re-enter your password please"
+msgstr "Veuillez saisir à nouveau votre mot de passe"
+
+# USERNAME FORMS
+
+msgid "Enter Username"
+msgstr "Entrez le nom d’utilisateur"
+
+# REVIEW EXTENSION
+
+msgid "This will permanently delete your account. Are you sure?"
+msgstr "Cela supprimera définitivement votre compte. Êtes-vous sûr ?"
+
+msgid "Update"
+msgstr "Mettre à jour"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Easy To Access"
+msgstr "Facile d’accès"
+
+msgid "Staff Were Friendly"
+msgstr "Le personnel était aimable"
+
+msgid "Recommend To Others"
+msgstr "Recommander aux autres"
+
+msgid "Confirm"
+msgstr "Confirmer"
+
+msgid "Are you sure you want to delete your review?"
+msgstr "Êtes-vous sûr de vouloir supprimer votre avis ?"
+
+# OTHER
+
+msgid "Log in to leave a review!"
+msgstr "Connectez-vous pour laisser un avis !"
+
+msgid "This will permanently delete your account, Are you sure?"
+msgstr "Cela supprimera définitivement votre compte, êtes-vous sûr ?"
+
+msgid "Once Verified, your email will be saved."
+msgstr "Une fois vérifié, votre e-mail sera enregistré."
+
+msgid "Delete Review"
+msgstr "Supprimer l’avis"
+
+msgid "Update View"
+msgstr "Mettre à jour la vue"
+
+msgid "Support Service Details"
+msgstr "Détails du service de soutien"
+
+msgid "Food Bank Details"
+msgstr "Détails de la banque alimentaire"
+
+msgid "Shelter Detail"
+msgstr "Détails du refuge"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Find Support"
+msgstr "Trouver de l’aide"
+
+msgid "Create Username"
+msgstr "Créer un nom d’utilisateur"
+
+msgid "Your Reviews"
+msgstr "Vos avis"
+
+msgid "Area"
+msgstr "Zone"
+
+msgid "All Areas"
+msgstr "Toutes les zones"
+
+msgid "Check your email to verify your account within 20 minutes or account will be removed from the system and you will have to register again."
+msgstr "Vérifiez votre e-mail pour valider votre compte dans les 20 minutes, sinon il sera supprimé du système et vous devrez vous réinscrire."
+
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"

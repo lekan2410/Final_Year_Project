@@ -1,0 +1,310 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: .\heaven_project_app\templates\heaven_project_code\services\food_bank\delete_review_foodbank.html:12
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-22 13:15+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\heaven_project_app\forms.py:12 .\heaven_project_app\forms.py:24
+msgid "Submit"
+msgstr "Submeter"
+
+# NAVIGATION BAR
+
+msgid "Home Page"
+msgstr "Página Inicial"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Services"
+msgstr "Serviços"
+
+msgid "Login Page"
+msgstr "Página de Início de Sessão"
+
+msgid "Log Out"
+msgstr "Terminar Sessão"
+
+msgid "Delete Account"
+msgstr "Eliminar Conta"
+
+msgid "Login"
+msgstr "Iniciar Sessão"
+
+msgid "Register"
+msgstr "Registar"
+
+msgid "Save"
+msgstr "Guardar"
+
+# FOOTER
+
+msgid "Footer"
+msgstr "Rodapé"
+
+msgid "Email"
+msgstr "Email"
+
+# Login
+
+msgid "Forgot Password?"
+msgstr "Esqueceu-se da palavra-passe?"
+
+msgid "Don't Have an Account? Sign Up!"
+msgstr "Não tem conta? Registe-se!"
+
+# REGISTER
+
+msgid "Register Page"
+msgstr "Página de Registo"
+
+msgid "Sign Up!"
+msgstr "Registar!"
+
+msgid "Already have an account, Login!"
+msgstr "Já tem uma conta? Inicie sessão!"
+
+# HOME PAGE
+
+msgid "Introduction"
+msgstr "Introdução"
+
+msgid "Image By"
+msgstr "Imagem por"
+
+msgid "Why this was created?"
+msgstr "Porque foi criado isto?"
+
+msgid "Homelessness remains a global issue, and its rising rates are concerning for those affected who may not know where to find support. This platform was created to address this need by providing spaces for people experiencing homelessness or vulnerability to access support. It’s designed to alleviate some of the hardship and distress they face."
+msgstr "A falta de habitação continua a ser um problema global, e o aumento das suas taxas é preocupante para as pessoas afetadas que podem não saber onde encontrar apoio. Esta plataforma foi criada para responder a esta necessidade, fornecendo espaços onde pessoas em situação de sem-abrigo ou vulnerabilidade possam aceder a apoio. Foi concebida para aliviar parte das dificuldades e do sofrimento que enfrentam."
+
+msgid "What the platform offers?"
+msgstr "O que a plataforma oferece?"
+
+msgid "Users can find nearby services such as food banks, shelters, and other support options using filters on the services page. By clicking on a service card, users can view more details, including its location and an integrated map. Once signed in, users can also leave reviews for each service. A chatbot is available to answer questions about the platform or help users find the nearest services."
+msgstr "Os utilizadores podem encontrar serviços próximos, como bancos alimentares, abrigos e outras opções de apoio, utilizando filtros na página de serviços. Ao clicar numa ficha de serviço, os utilizadores podem ver mais detalhes, incluindo a localização e um mapa integrado. Depois de iniciarem sessão, também podem deixar avaliações para cada serviço. Está disponível um chatbot para responder a perguntas sobre a plataforma ou ajudar a encontrar os serviços mais próximos."
+
+msgid "Welcome to the Haven Website! This platform is designed to help users find nearby services, or search for specific services they need. It is primarily aimed at individuals experiencing homelessness and other vulnerable users who may be looking for support."
+msgstr "Bem-vindo ao site Haven! Esta plataforma foi concebida para ajudar os utilizadores a encontrar serviços próximos ou procurar serviços específicos de que necessitem. Destina-se principalmente a pessoas em situação de sem-abrigo e outros utilizadores vulneráveis que possam estar à procura de apoio."
+
+msgid "Why is this a problem?"
+msgstr "Porque é que isto é um problema?"
+
+# SERVICE PAGE
+
+msgid "Use Your Location!"
+msgstr "Use a sua localização!"
+
+msgid "Enter Postcode"
+msgstr "Introduza o código postal"
+
+msgid "Search"
+msgstr "Pesquisar"
+
+msgid "City"
+msgstr "Cidade"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Unknown"
+msgstr "Desconhecido"
+
+msgid "Post Code"
+msgstr "Código Postal"
+
+msgid "All Countries"
+msgstr "Todos os Países"
+
+msgid "All Cities"
+msgstr "Todas as Cidades"
+
+msgid "Food Banks"
+msgstr "Bancos Alimentares"
+
+msgid "Support Services"
+msgstr "Serviços de Apoio"
+
+msgid "Shelters"
+msgstr "Abrigos"
+
+msgid "Opening Times"
+msgstr "Horário de Funcionamento"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Address"
+msgstr "Morada"
+
+msgid "Phone Number"
+msgstr "Número de Telefone"
+
+msgid "Extra Information"
+msgstr "Informação Adicional"
+
+msgid "Type"
+msgstr "Tipo"
+
+# Chatbot Page
+
+msgid "Send"
+msgstr "Enviar"
+
+# Edit Page
+
+msgid "Edit Page"
+msgstr "Página de Edição"
+
+msgid "Change Password"
+msgstr "Alterar Palavra-passe"
+
+msgid "Update Email"
+msgstr "Atualizar Email"
+
+msgid "Update Profile"
+msgstr "Atualizar Perfil"
+
+msgid "Update Profile Picture"
+msgstr "Atualizar Foto de Perfil"
+
+msgid "Edit Account"
+msgstr "Editar Conta"
+
+msgid "Change Email"
+msgstr "Alterar Email"
+
+msgid "Enter new email here"
+msgstr "Introduza o novo email aqui"
+
+msgid "Email Verification"
+msgstr "Verificação de Email"
+
+msgid "Once Verified, your new email will be saved."
+msgstr "Após verificação, o seu novo email será guardado."
+
+# Verify Email
+
+msgid "Verify your email within 20 minutes, or your account will be deleted and you’ll need to register again."
+msgstr "Verifique o seu email dentro de 20 minutos, caso contrário a sua conta será eliminada e terá de se registar novamente."
+
+msgid "Once Verified, you can log in."
+msgstr "Após verificação, poderá iniciar sessão."
+
+# Chatbot
+
+msgid "Type a message"
+msgstr "Escreva uma mensagem"
+
+# Forms
+
+msgid "For privacy, use a nickname. Your username is not your real name."
+msgstr "Por privacidade, use uma alcunha. O seu nome de utilizador não é o seu nome real."
+
+msgid "Enter email for verification."
+msgstr "Introduza o email para verificação."
+
+# REVIEW FORM
+
+msgid "Was this service easy to access?"
+msgstr "Foi fácil aceder a este serviço?"
+
+msgid "Were the staff friendly?"
+msgstr "Os funcionários foram simpáticos?"
+
+msgid "Would you recommend this food bank?"
+msgstr "Recomendaria este banco alimentar?"
+
+msgid "Yes"
+msgstr "Sim"
+
+msgid "No"
+msgstr "Não"
+
+msgid "Username"
+msgstr "Nome de utilizador"
+
+msgid "Rating"
+msgstr "Avaliação"
+
+# PASSWORD FORMS
+
+msgid "Enter your password please"
+msgstr "Introduza a sua palavra-passe"
+
+msgid "Re-enter your password please"
+msgstr "Volte a introduzir a sua palavra-passe"
+
+# USERNAME FORMS
+
+msgid "Enter Username"
+msgstr "Introduza o nome de utilizador"
+
+# REVIEW EXTENSION
+
+msgid "This will permanently delete your account. Are you sure?"
+msgstr "Isto irá eliminar permanentemente a sua conta. Tem a certeza?"
+
+msgid "Update"
+msgstr "Atualizar"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Easy To Access"
+msgstr "Fácil de Aceder"
+
+msgid "Staff Were Friendly"
+msgstr "Os funcionários foram simpáticos"
+
+msgid "Recommend To Others"
+msgstr "Recomendar a outros"
+
+msgid "Confirm"
+msgstr "Confirmar"
+
+msgid "Are you sure you want to delete your review?"
+msgstr "Tem a certeza de que quer eliminar a sua avaliação?"
+
+# OTHER
+
+msgid "Log in to leave a review!"
+msgstr "Inicie sessão para deixar uma avaliação!"
+
+msgid "Delete Review"
+msgstr "Eliminar Avaliação"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Find Support"
+msgstr "Encontrar Apoio"
+
+msgid "Create Username"
+msgstr "Criar Nome de Utilizador"
+
+msgid "Your Reviews"
+msgstr "As suas avaliações"
+
+msgid "Area"
+msgstr "Área"
+
+msgid "All Areas"
+msgstr "Todas as Áreas"
+
+msgid "Reset Password"
+msgstr "Redefinir palavra-passe" 

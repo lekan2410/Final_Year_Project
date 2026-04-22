@@ -345,6 +345,20 @@ body {
     text-decoration-color: #666666;
 }
 
+.hero-text {
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+}
+
+
 
 .main-section {
     text-align: center;
