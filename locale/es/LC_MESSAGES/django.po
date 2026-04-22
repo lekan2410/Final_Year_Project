@@ -211,8 +211,8 @@ msgstr "Una vez verificado, tu nuevo correo electrónico será guardado."
 
 # Verify Email
 
-msgid "Check your email to verify your account."
-msgstr "Revisa tu correo electrónico para verificar tu cuenta."
+msgid "Verify your email within 20 minutes, or your account will be deleted and you’ll need to register again."
+msgstr "Verifica tu correo electrónico dentro de 20 minutos, o tu cuenta será eliminada y tendrás que registrarte de nuevo."
 
 msgid "Once Verified, you can log in."
 msgstr "Una vez verificado, podrás iniciar sesión."
@@ -297,3 +297,47 @@ msgstr "Confirmar"
 
 msgid "Are you sure you want to delete your review?"
 msgstr "¿Estás seguro de que quieres eliminar tu reseña?"
+
+# OTHER
+msgid "Log in to leave a review!"
+msgstr "¡Inicia sesión para dejar una reseña!"
+
+msgid "This will permanently delete your account, Are you sure?"
+msgstr "Esto eliminará permanentemente tu cuenta, ¿estás seguro?"
+
+msgid "Once Verified, your email will be saved."
+msgstr "Una vez verificado, tu correo electrónico será guardado."
+
+msgid "Delete Review"
+msgstr "Eliminar reseña"
+
+msgid "Update View"
+msgstr "Actualizar vista"
+
+msgid "Support Service Details"
+msgstr "Detalles del servicio de apoyo"
+
+msgid "Food Bank Details"
+msgstr "Detalles del banco de alimentos"
+
+msgid "Shelter Detail"
+msgstr "Detalles del refugio"
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "Find Support"
+msgstr "Encontrar apoyo"
+
+msgid "Create Username"
+msgstr "Crear nombre de usuario"
+
+msgid "Your Reviews"
+msgstr "Tus reseñas"
+
+msgid "Area"
+msgstr "Área"
+
+msgid "All Areas"
+msgstr "Todas las áreas"
+

@@ -2,10 +2,12 @@
 <html>
      <!-- Use https://www.notion.com/ for motivation -->
     <head>
+        {% load static %}
+        {% load i18n %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Verification</title>
-        {% load static %}
+        <title>{% trans "Email Verification "%}</title>
+        
 
         
          <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
@@ -16,70 +18,74 @@
     <body>
         
         <div class="navigation_bar">
-            <ul class="nav-bar">
-                <li><a href="{% url 'home' %}" >Home Page</a></li>
-                <li><a href="{% url 'services' %}">Services</a></li>
-                <li><a href="{% url 'chatbot' %}">ChatBot</a></li>
-                 
-                <li>
-                    <div class="dropdown">
-                           
-                           {% if user.profile.profile_image %}
+                <div class="navigation_container">
 
-                               <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
+                    <ul class="nav-bar" id="nav-bar">
+                        <li><a href="{% url 'home' %}">{% trans "About" %}</a></li>
+                        <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
+                        <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
 
-                            {% else %}
+                        <li>
+                            <div class="dropdown">
+                                {% if user.profile.profile_image %}
 
-                                <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
+
+                                {% else %}
+
+                                    <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                    
+                                {% endif %}
+                                <div class="dropdown-content">    
                                 
-                            {% endif %}
-                        
-                          <div class="dropdown-content">    
-                        
-                            {% if user.is_authenticated %}
-                               <p style="width: 13px"> {{user.username}}</p>
+                                    {% if user.is_authenticated %}
+                                    <p style="width: 13px"> {{user.username}}</p>
+                                        
+                                    <form action="{% url 'logout' %}" method="post"> 
+                                            {% csrf_token %}
+                                        <button class="log-out-button"> {% trans "Logout" %} </button>
+                                    </form>
+
+                                    <form action="{% url 'delete_account' %}" method="post" onsubmit="
+                                    return confirm('{% trans "This will permanently delete your account, Are you sure?" %}');">
+                                        {% csrf_token %}
+                                        <button class="delete-account-button"> {% trans "Delete Account" %} </button>
+                                    </form>
+
+                                    
+                                    <a href="{% url 'edit_account' %}" class="edit_account_link">{% trans "Edit Account" %}</a>
+                                    
+                                    {% else %} 
+                                    
+                                    <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                                    <a href="{% url 'register' %}">{% trans "Register" %} </a>
+
+                                    {% endif %}
+
                                 
-                               <form action="{% url 'logout' %}" method="post"> 
-                                    {% csrf_token %}
-                                   <button class="log-out-button"> Logout </button>
-                               </form>
+                                </div>
+                            </div>
+                        </li>
+                                
+                        
+                    </ul>
+                    
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
 
-                               <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                               return confirm('This will permenantely delete your account, Are you sure?');"> 
-                                    {% csrf_token %}
-                                   <button class="delete-account-button"> Delete Account </button>
-                               </form>
-
-                              
-                            <a href="{% url 'edit_account' %}">{% trans "Edit Account" %}</a>
-                            
-                            {% else %} 
-                            
-                               <a href="{% url 'login' %}">Login</a>
-                               <a href="{% url 'register' %}">Register </a>
-
-                            {% endif %}
-
-
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                </div>
         </div>
-       
 
         <div class="main-section-home"> 
 
             <p>  
 
-                {% trans  "Once Verified, your email will be saved" as verify %}
+                {% trans  "Once Verified, your email will be saved." as verify %}
     
                 {{ verify }}
 
-                <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
-                data-audio="{% say LANGUAGE_CODE check_email 'verify_email' %}">
-                <i class="fa fa-volume-up"></i>
-                </a>
+                
             </p>
             
 

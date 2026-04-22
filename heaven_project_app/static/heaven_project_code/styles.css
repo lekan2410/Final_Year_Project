@@ -52,7 +52,7 @@ body {
 .nav-bar {
   display: flex;
   list-style-type: none;
-  gap: 20%;
+  gap: 15%;
   margin: 0;
   margin-left: 23%;
   padding: 0;
@@ -80,7 +80,7 @@ body {
 
 }
 
-
+/* Mobile View */
 @media screen and (max-width:768px) {
 
     .login-page-img {
@@ -139,6 +139,7 @@ body {
 
     .dropdown {
         float: right;
+        margin-right: 35%;
         bottom: 340px;
     }
 
@@ -310,7 +311,7 @@ body {
 }
 
 .edit_account_link:hover {
-    background-color: #2563EB;
+    background-color: #2563EB !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }

@@ -24,7 +24,7 @@ class EmailVerifcationForm(forms.Form):
     email = forms.EmailField(required=True, help_text= _('Enter email for verification.'), label=_("Email"))  
 
 class EnterUsername(forms.Form):
-    username = forms.CharField(required=True, help_text=_('Enter username:')) 
+    username = forms.CharField(required=True, help_text=_('Enter Username'), label=_("Username")) 
 
 class ChangeEmailForm(forms.ModelForm):
 

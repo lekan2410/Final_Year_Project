@@ -7,9 +7,10 @@ from django.views.generic import DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .utils import *
-from .chatbot import RuleBasedChatbot
+from .chatbot import RuleBasedChatbot, pairs
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
@@ -28,56 +29,6 @@ from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-
-
-pairs = [
-     [r"hi|hello|hey|yo", ["Hello! How can I help you today?",
-                         "Hi there! How may I assist you?"]],
-     [r"my name is (.*)", ["Hello %1! How can I assist you today?"]],
-     [r"(.*) your name?", ["I am your friendly chatbot!"]],
-     [r"how are you?", ["I'm just a bot, but I'm doing well. How about you?"]],
-     [r"tell me a joke", ["Why don't skeletons fight each other? They don't have the guts!",
-                         "Can a horse join the army, no the Neigh-vy",
-                         "What did the cop say to his belly button?, You're under a vest!",]],
-     [r"help|assist", ["Sure! here are the things I can do, <br><br> I can search for the nearest locations on shelters, "
-     "food banks and support services<br><br>, I can tell you information on a specific service<br><br> send you links to specific pages on the website<br><br> use 'Commands' to find more information and remember i'm still in development."]],
-     [r"bye|exit", ["Goodbye! Have a great day!", "See you later!"]],
-     [r"i'm fine|i'm great|im great|im fine", ["That's great to hear!", "Wow that's wonderful to hear!"]],
-     [r"How does this website help?", ["This website helps to allow people to find services to support those who are experincing homelessness"]],
-     [r"What can you do?", ["I can answer questions, help you find services and tell jokes!"]],
-     
-
-     [r"where can i find nearest shelter?|where can i find shelters?| nearest shelters", ["SHOW_NEAREST_SHELTERS"]],
-     [r"where can i find nearest food bank?|where can i find food banks?", ["SHOW_NEAREST_FOODBANKS."]],
-     [r"where can i find nearest support service?|where can i find support services?", ["SHOW_NEAREST_SUPPORTS_SERVICES."]],
-
-     [r"general information", ["This is a website that helps those who are experiencing homeless or people that are vulnerable to find services to support them. Food banks, Shelters and Support Services available. "]],
-
-     [r"features|feature", ["Users can leave reviews on services, <br><br> - edit their profile and use me to find out more information, <br><br> - navigate the website or use me to tell jokes!"]],
-     
-     [r"(commands)", ["Here are some things you can type:<br><br>"
-               "- 'Where can I find a shelter?'<br><br>"
-               "- 'Find a food bank near me'<br><br>"
-               "- 'Where can I find support services?'<br><br>"
-               "- 'Tell me a joke'<br><br>"
-               "- 'What can you do?'<br><br>"
-               "- 'General information'<br><br>"
-               "- 'Features'<br><br>"
-               "- 'Help'<br><br>"
-               "- 'Limitations on Location'<br><br>"
-               "- 'Bye' or 'Exit' to leave the chat<br><br>"
-               "You don’t have to type these exactly—I’ll try to understand similar questions too!"]],
-     
-     [r"Limitations on Location|limitation on location", ["Services available are only based on Cambridge due to early stages of development. <br><br> Use postcodes that are in Cambridge. <br><br> Using other postcodes outside of Cambridge may or may not return nearest results. <br><br> More Services will be available in the future."]],
-     
-
-     [r"(.*)", ["I'm sorry, I didn’t quite understand that.\n\n"
-               "You can try things like:<br><br>"
-               "- 'Where can I find a shelter?'<br><br>"
-               "- 'Find a food bank'<br><br>"
-               "- Type 'commands' to see all options"]],
-
-     ]
 
 # Create your views here.
 def login_view(request):
@@ -244,17 +195,27 @@ def chatbot_response(request):
      user_message = request.GET.get("message", "")
      session  = request.session
      
-     if "shelter" in user_message:
+     if "nearest shelter" in user_message or "Nearest Shelter" in user_message:
           session["intent"] = "find_shelter" 
-
           return JsonResponse({"response" : "Ok, please enter your postcode so i can find nearby shelters"})
-     elif "food bank" in user_message:
+     elif "nearest food bank" in user_message or "Nearest Food Bank" in user_message:
           session["intent"] = "find_foodbanks"
           return JsonResponse({"response" : "Ok, please enter your postcode so i can find nearby food banks"})
-     elif "support service" in user_message:
+     elif "nearest support service" in user_message or "Nearest Support Service" in user_message:
           session["intent"] = "find_support_services"
-          
-          return JsonResponse({"response" : "Ok, please enter your postcode so i can find nearby support services"})
+
+
+     elif "Specific Food Bank" in user_message or "specific food bank" in user_message:
+          session["intent"] = "specific_foodbank"
+          return JsonResponse({"response" : "Ok, please enter the name of the food bank."})
+     elif "Specific Shelter" in user_message or "specific shelter" in user_message:
+          session["intent"] = "specific_shelter"
+          return JsonResponse({"response" : "Ok, please enter the name of the shelter."})
+     elif "Specific Support Service" in user_message or "specific support service" in user_message:
+          session["intent"] = "specific_support_service"
+          return JsonResponse({"response" : "Ok, please enter the name of the support service."})
+     
+    
      
      if session.get("intent") == "find_shelter":
           postcode = user_message
@@ -295,6 +256,7 @@ def chatbot_response(request):
                reply += f"Postcode: {fb.postcode}<br><br>"
      
           return JsonResponse({"response" : reply})
+     
      elif session.get("intent") == "find_support_services":
           postcode = user_message
 
@@ -314,6 +276,85 @@ def chatbot_response(request):
                reply += f"Postcode: {ss.postcode}<br><br>"
      
           return JsonResponse({"response" : reply})
+     
+     elif "bye" in user_message or "exit" in user_message:
+          session["intent"] = None
+          return JsonResponse({
+               "response": "Goodbye",
+               "redirect": "home"
+          })
+     
+     elif session.get("intent") == "specific_foodbank":
+          name_of_service = user_message
+
+          food_bank = Food_Banks.objects.filter(name__icontains=name_of_service).first()
+          
+          session["intent"] = None
+
+          if not food_bank:
+               return JsonResponse({
+                    "response": "Food Bank hasn't been found, please re-enter 'Specific Food Bank'"
+               })
+          
+          reply = "Here is more information on the food bank.<br><br>"
+          reply += f"Name: {food_bank.name}<br><br>"
+          reply += f"City: {food_bank.city}<br><br>"
+          reply += f"Country: {food_bank.country}<br><br>"
+          reply += f"Address: {food_bank.address}<br><br>"
+          reply += f"Postcode: {food_bank.postcode}<br><br>"
+          reply += f"Type: {food_bank.type}<br><br>"
+          reply += f"Phone: {food_bank.phone_number}<br><br>"
+
+          return JsonResponse({"response" : reply})
+
+
+     elif session.get("intent") == "specific_shelter":
+          name_of_service = user_message
+
+          shelter = Shelters.objects.filter(name__icontains=name_of_service).first()
+          
+          session["intent"] = None
+
+          if not shelter:
+               return JsonResponse({
+                    "response": "Shelter hasn't been found, please re-enter 'Specific Shelter'"
+               })
+          
+          reply = "Here is more information on the shelter .<br><br>"
+          reply += f"Name: {shelter.name}<br><br>"
+          reply += f"City: {shelter.city}<br><br>"
+          reply += f"Country: {shelter.country}<br><br>"
+          reply += f"Address: {shelter.address}<br><br>"
+          reply += f"Postcode: {shelter.postcode}<br><br>"
+          reply += f"Type: {shelter.type}<br><br>"
+          reply += f"Phone: {shelter.phone_number}<br><br>"
+
+          
+          return JsonResponse({"response" : reply})
+     
+     elif session.get("intent") == "specific_support_service":
+          name_of_service = user_message
+
+          support_service = Support_Services.objects.filter(name__icontains=name_of_service).first()
+          
+          session["intent"] = None
+
+          if not support_service:
+               return JsonResponse({
+                    "response": "Support Service hasn't been found, please re-enter 'Specific Support Service'"
+               })
+          
+          reply = "Here is more information on the support service.<br><br>"
+          reply += f"Name: {support_service.name}<br><br>"
+          reply += f"City: {support_service.city}<br><br>"
+          reply += f"Country: {support_service.country}<br><br>"
+          reply += f"Address: {support_service.address}<br><br>"
+          reply += f"Postcode: {support_service.postcode}<br><br>"
+          reply += f"Type: {support_service.type}<br><br>"
+          reply += f"Phone: {support_service.phone_number}<br><br>"
+
+          return JsonResponse({"response" : reply})
+          
 
 
      response = bot.respond(user_message)
@@ -419,6 +460,7 @@ class ReviewDeleteViewFoodBank(LoginRequiredMixin, DeleteView):
               raise PermissionDenied
 
          return super().dispatch(request, *args, **kwargs)
+
 
 # ChatGPT and GeeksforGeeks used for guidance and then modified the solution to fit my own implementation 
 class ReviewUpdateViewFoodBank(LoginRequiredMixin, UpdateView):
@@ -619,19 +661,31 @@ def testing(request):
 
      return render(request, 'heaven_project_code/test/testing.html')
 
+@login_required
 def edit_account(request):
-     return render(request, 'heaven_project_code/edit_account/edit.html')
+     review_food_bank = Review_FoodBank.objects.filter(user = request.user)
+     review_support_service = Review_Support_Service.objects.filter(user = request.user)
+     review_shelter = Review_Shelter.objects.filter(user = request.user)
 
+     return render(request, 'heaven_project_code/edit_account/edit.html', {'review_food_bank' : review_food_bank, 'review_support_service' : review_support_service, 'review_shelter' : review_shelter})
+
+@login_required
 def change_password(request):
      if request.method == "POST":
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
+          
+
+            return redirect("login")
+
+
      else:
           form = PasswordChangeForm(user=request.user, data=request.POST)
 
      return render(request, 'heaven_project_code/edit_account/change_password/change_password.html', {'form' : form})
 
+@login_required
 def update_profile(request):
      
      # Checks if profile has been created
@@ -648,6 +702,7 @@ def update_profile(request):
 
      return render(request, 'heaven_project_code/edit_account/update_profile/update_profile.html', {"profile_form" : profile_form, 'profile' : profile} )
 
+@login_required
 def update_email(request):
      if request.method =="POST":
           form = ChangeEmailForm(request.POST)
@@ -680,6 +735,7 @@ def update_email(request):
      
      return render(request, "heaven_project_code/edit_account/update_email/update_email.html", {'form' : form})
 
+@login_required
 def change_email_verification(request, uidb64, token):
      try:
           uid = urlsafe_base64_decode(uidb64).decode()

@@ -7,7 +7,7 @@
         {% load static %}
         {% load i18n %}
 
-        <title>{% trans "Login" %} </title>
+        <title>{% trans "Edit Page" %} </title>
 
         
          <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
@@ -58,7 +58,7 @@
                                     </form>
 
                                     <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                    return confirm('{% trans "This will permanently delete your account, Are you sure?" %}');">
                                             {% csrf_token %}
                                         <button class="delete-account-button">  {% trans "Delete Account" %}</button>
                                     </form>
@@ -109,11 +109,11 @@
                    
                     {% if user.profile.profile_image %}
 
-                        <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
+                        <img class="profile_picture" src="{{user.profile.profile_image.url}}" />
 
                     {% else %}
 
-                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px, style="margin-left: 40%;">
                         
                     {% endif %}
 
@@ -129,10 +129,115 @@
                     <br><br><br>
 
                     <a href="{% url 'update_email' %}" class="btn" style="margin-left: 30%; border-radius: 10px;">{% trans "Update Email" %}</a>
-                
+                    
+
+                    <u><p style="margin-left: 35%"> {% trans "Your Reviews"%} </p></u>
+
+                    <u><p style="margin-left: 35%"> {% trans "Food Banks"%} </p></u>
+
+
+                    <div class="card-wrapper">
+                        {% for review in review_food_bank %}
+                            <a href="{% url 'foodbank_details' review.foodbank_id.id %}" style="text-decoration: none; color: black">
+                                <div class="review-card">
+
+                                        {% if review.user.profile.profile_image %}
+
+                                                <img class="profile_picture" src="{{review.user.profile.profile_image.url}}"/>
+
+                                        {% else %}
+
+                                                <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                                
+                                        {% endif %}
+                                        
+                                        
+                                        <h3>{{ review.name }} </h3>
+                                        <p> {{ review.foodbank_id.name }} </p>
+                                        <p>{{ review.get_rating_display }} </p>
+                                        <p>{% trans "Easy To Access" %}: {{ review.get_easy_access_q_display }}</p>
+                                        <p>{% trans "Staff Were Friendly" %}: {{ review.get_staff_q_display }}</p>
+                                        <p>{% trans "Recommend To Others" %}: {{ review.get_recommend_q_display }}</p>
+                                        
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
             
             {% endif %}
+
+            <br><br>
+        
+
+            <u><p style="margin-left: 35%"> {% trans "Shelters"%} </p></u>
+
+                        <div class="card-wrapper">
+                            {% for review in review_shelter %}
+                                    <a href="{% url 'shelter_details' review.shelter_id.id %}" style="text-decoration: none; color: black">
+                                        <div class="review-card">
+
+                                                {% if review.user.profile.profile_image %}
+
+                                                        <img class="profile_picture" src="{{review.user.profile.profile_image.url}}"/>
+
+                                                {% else %}
+
+                                                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                                        
+                                                {% endif %}
+                                                
+                                                
+                                                <h3>{{ review.name }} </h3>
+                                                <p> {{ review.shelter_id.name }} </p>
+                                                <p>{{ review.get_rating_display }} </p>
+                                                <p>{% trans "Easy To Access" %}: {{ review.get_easy_access_q_display }}</p>
+                                                <p>{% trans "Staff Were Friendly" %}: {{ review.get_staff_q_display }}</p>
+                                                <p>{% trans "Recommend To Others" %}: {{ review.get_recommend_q_display }}</p>
+                                                
+                                        </div>
+                                    </a>
+                            {% endfor %}
+                        </div>
+
+                    <br><br>
+                
+
+                    <u><p style="margin-left: 35%"> {% trans "Support Services"%} </p></u>
+
+                        <div class="card-wrapper">
+                            {% for review in review_support_service %}
+                                    <a href="{% url 'support_service_details' review.support_service_id.id %}" style="text-decoration: none; color: black">
+                                        <div class="review-card">
+
+                                                {% if review.user.profile.profile_image %}
+
+                                                        <img class="profile_picture" src="{{review.user.profile.profile_image.url}}"/>
+
+                                                {% else %}
+
+                                                        <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
+                                                        
+                                                {% endif %}
+                                                
+                                                
+                                                <h3>{{ review.name }} </h3>
+                                                <p> {{ review.support_service_id.name }} </p>
+                                                <p>{{ review.get_rating_display }} </p>
+                                                <p>{% trans "Easy To Access" %}: {{ review.get_easy_access_q_display }}</p>
+                                                <p>{% trans "Staff Were Friendly" %}: {{ review.get_staff_q_display }}</p>
+                                                <p>{% trans "Recommend To Others" %}: {{ review.get_recommend_q_display }}</p>
+                                                
+                                        </div>
+                                    </a>
+                            {% endfor %}
+                        </div>
+                
+                        
+            </div>
         </div>
+       
+
+        
        
 
         <div class="footer"> 

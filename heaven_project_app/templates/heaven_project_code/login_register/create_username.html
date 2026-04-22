@@ -9,7 +9,7 @@
         {% load static %}
         {% load i18n %}
 
-        <title>{% trans "Login" %} </title>
+        <title>{% trans "Create Username" %} </title>
 
         
          <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
@@ -33,8 +33,8 @@
                 <div class="navigation_container">
 
                     <ul class="nav-bar" id="nav-bar">
-                        <li><a href="{% url 'home' %}" > {% trans "Home Page" %} </a></li>
-                        <li><a href="{% url 'services' %}"> {% trans "Services" %}  </a></li>
+                        <li><a href="{% url 'home' %}">{% trans "About" %}</a></li>
+                        <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
 
                         <li>
@@ -61,7 +61,7 @@
                                     </form>
 
                                     <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                    return confirm('{% trans "This will permanently delete your account, Are you sure?" %}');">
                                             {% csrf_token %}
                                         <button class="delete-account-button">  {% trans "Delete Account" %}</button>
                                     </form>
@@ -102,55 +102,10 @@
 
                 <br>
 
-                <button type = "submit" class="btn" style="margin-left: 20%; border-radius: 10px; background-color: LightBlue">{% trans  "Submit" %}</button>
+                <button type = "submit" class="btn" style="margin-left: 20%; border-radius: 10px; ">{% trans  "Submit" %}</button>
             
             </form>
-           
-            
-            <br>
-            
-            
-            <br>
-            <br>
-
-             <div> 
-               <a href="{% url 'enter_email_verification' %}", style="margin-left: 25%; color: inherit; text-decoration:none;">
-                
-
-                {% trans  'Forgot Password?' as forgot_text %}
-                
-                {{ forgot_text }}
-
-                <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
-                 data-audio="{% say LANGUAGE_CODE forgot_text %}">
-                   <i class="fa fa-volume-up"></i>
-                </a>
-
-               </a>
-            </div>
-
-            <br>
-            <br>
-
-            <div> 
-               <a href="{% url 'register' %}", style="margin-left: 23%; color: inherit; text-decoration:none;">
-                 
-
-                 
-                {% trans  "Don't Have an Account? Sign Up!" as sign_up_text %}
-                
-                {{ sign_up_text }}
-
-                <a href="javascript:void(0);" class="icon" onclick="TextToSpeech(this)"
-                 data-audio="{% say LANGUAGE_CODE sign_up_text %}">
-                   <i class="fa fa-volume-up"></i>
-                 </a>
-
-            
-                </a>
-
-            </div>
-              
+             
 
         </div>
 
@@ -177,7 +132,7 @@
                 </select>
 
                   
-                <button type = "submit" class="btn"  style="margin-left: 18%; border-radius: 10px;">{% trans  "Submit"%}</button>
+                <button type="submit" class="btn" >{% trans  "Submit" %}</button>
               
             
             </form> 

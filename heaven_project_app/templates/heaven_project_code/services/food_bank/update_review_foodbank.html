@@ -33,8 +33,8 @@
                 <div class="navigation_container">
 
                     <ul class="nav-bar" id="nav-bar">
-                        <li><a href="{% url 'home' %}" > {% trans "Home Page" %} </a></li>
-                        <li><a href="{% url 'services' %}"> {% trans "Services" %}  </a></li>
+                        <li><a href="{% url 'home' %}">{% trans "About" %}</a></li>
+                        <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
 
                         <li>
@@ -61,7 +61,7 @@
                                     </form>
 
                                     <form action="{% url 'delete_account' %}" method="post" onsubmit="
-                                    return confirm('This will permenantely delete your account, Are you sure?');"> 
+                                    return confirm('{% trans "This will permanently delete your account, Are you sure?" %}');"> 
                                             {% csrf_token %}
                                         <button class="delete-account-button">  {% trans "Delete Account" %}</button>
                                     </form>
