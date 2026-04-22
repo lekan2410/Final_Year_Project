@@ -71,7 +71,7 @@ def delete_account(request):
 def register(request):
 
      # Set threshold to 20 minutes ago
-     threshold = timezone.now() - timedelta(minutes=5)
+     threshold = timezone.now() - timedelta(minutes=20)
      # Delete inactive users older than 20 minutes
      User.objects.filter(is_active=False, date_joined__lt=threshold).delete()
 
