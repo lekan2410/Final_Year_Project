@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-     <!-- Use https://www.notion.com/ for motivation -->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +18,16 @@
     <body>
         
          <div class="navigation_bar">
+                <!--Navigation Bar-->
                 <div class="navigation_container">
-
+                    
                     <ul class="nav-bar" id="nav-bar">
                         <li><a href="{% url 'home' %}">{% trans "About" %}</a></li>
                         <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
-
+                        <!--Dropdown for mobile view -->
                         <li>
+                           <!--displaying profile image -->
                             <div class="dropdown">
 
                                 {% if user.profile.profile_image %}
@@ -38,7 +39,7 @@
                                     <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
                                     
                                 {% endif %}
-                                
+                                <!--Showing content when user hovers-->
                                 <div class="dropdown-content">    
                                 
                                     {% if user.is_authenticated %}
@@ -72,7 +73,7 @@
                                 
                         
                     </ul>
-                    
+                    <!--function to active the nav bar-->
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                         <i class="fa fa-bars"></i>
                     </a>
@@ -80,19 +81,22 @@
                 </div>
         </div>
 
-
+        <!--Chatbox Container-->
         <div class="chat-box-container"> 
+
+            <!--instructions-->
             <p> Use "Commands" or "Help" to find out more</p>
             <p> Please type in "Limitation On Location" to find out more before entering Postcode<p>
             
             <p>Chatbot is only available in English.</p>
 
+              <!-- chatbot interface  -->
              <div id="chat-box" class="chat-box"></div>  <!-- THIS WILL HOLD MESSAGES -->
             <input id="user-input" placeholder="Type a message...">
             <button onclick="sendMessage()" class="btn"> {% trans "Send" %}</button>
         </div>
 
-
+         <!--Footer-->
         <div class="footer"> 
             <h1 style="text-align: center;"> {% trans "Footer" %}</h1>
             
@@ -100,7 +104,7 @@
             <p> {% trans "Email" %}:  w1985568@westminster.ac.uk</p>
             
             <p></p>
-
+           <!--Form to select languages-->
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 {% get_available_languages as LANGUAGES %}
@@ -122,6 +126,8 @@
 
             
             <script>
+
+                // Function to active the function
                 function sendMessage() {
                     let input = document.getElementById("user-input");
                     let message = input.value;

@@ -229,6 +229,17 @@ msgstr "Os funcionários foram simpáticos?"
 msgid "Would you recommend this food bank?"
 msgstr "Recomendaria este banco alimentar?"
 
+# Portuguese
+msgid "Would you recommend this shelter?"
+msgstr "Você recomendaria este abrigo?"
+
+msgid "Would you recommend this support service?"
+msgstr "Você recomendaria este serviço de apoio?"
+
+msgid "Food banks, shelters & support services"
+msgstr "Bancos de alimentos, abrigos e serviços de apoio"
+
+
 msgid "Yes"
 msgstr "Sim"
 

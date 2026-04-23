@@ -22,9 +22,10 @@ Support Service Details
 {% block content %}
 
 
-
+<!--Container for content-->
 <div class="main-section">
     
+    <!--displaying information of the service-->
     <div class="information"> 
  
         {% trans "Name" as name_text %}
@@ -59,8 +60,9 @@ Support Service Details
 
        
 
-        <!-- W3Schools used for Google Maps -->
-       
+        
+        
+        <!--Integrated Google Map-->
         <div class="map-container">
             <h1>Google Map</h1>
             
@@ -72,7 +74,8 @@ Support Service Details
         </div>
         
         <br>
-
+        
+        <!--Review Form-->
         <form method = "post" class="fields" style="margin-right: 20%">
                {% if user.is_authenticated %}
                      {% csrf_token %}
@@ -88,7 +91,8 @@ Support Service Details
                 <br>
             
             </form>
-
+             
+            <!--Displaying all reviews on the service-->
              <div class="card-wrapper">
                   {% for review in reviews %}
                         <div class="review-card">
@@ -102,6 +106,8 @@ Support Service Details
                                 <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
                                 
                            {% endif %}
+
+                           <!--Review Details-->
                            
                            <h3>{{ review.name }} </h3>
                            <p>{{ review.get_rating_display }} </p>
@@ -109,6 +115,7 @@ Support Service Details
                            <p>{% trans "Staff Were Friendly" %}: {{ review.get_staff_q_display }}</p>
                            <p>{% trans "Recommend To Others" %}: {{ review.get_recommend_q_display }}</p>
                             
+                           <!--Options to update or delete review-->
                            {% if review.user == request.user %} 
                              <a href="{% url 'delete_review_support_service' review.pk %}" class="btn" style="background-color: red"> Delete </a> <br><br><br>
                              <a href="{% url 'update_review_support_service' review.pk %}" class="btn"> Update </a>

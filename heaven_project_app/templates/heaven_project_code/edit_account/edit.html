@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
     </head>
 
-   
+   <!--Loading Tags-->
     {% csrf_token %}
 
     {% load gtts_tags %}
@@ -27,6 +27,7 @@
        
         
         <div class="navigation_bar">
+                <!--Navigation Bar-->
                 <div class="navigation_container">
 
                     <ul class="nav-bar" id="nav-bar">
@@ -34,9 +35,9 @@
                         <li><a href="{% url 'services' %}"> {% trans "Services" %}  </a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
 
-                        <li>
+                        <li><!--Dropdown for mobile view -->
                             <div class="dropdown">
-
+                                <!--displaying profile image-->
                                 {% if user.profile.profile_image %}
 
                                     <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
@@ -46,7 +47,7 @@
                                     <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
                                     
                                 {% endif %}
-                                
+                                <!--Showing content when user hovers-->
                                 <div class="dropdown-content">    
                                 
                                     {% if user.is_authenticated %}
@@ -80,6 +81,8 @@
                                 
                         
                     </ul>
+
+                     <!--function to active the nav bar-->
                     
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                         <i class="fa fa-bars"></i>
@@ -88,7 +91,7 @@
                 </div>
         </div>
 
-        
+       <!--Displaying content in the container-->
         <div class="edit_container"> 
 
              {% if user.is_authenticated %}
@@ -106,7 +109,8 @@
                         </a>
                         
                     </p></u>
-                   
+                    
+                    <!--Displaying user profile image-->
                     {% if user.profile.profile_image %}
 
                         <img class="profile_picture" src="{{user.profile.profile_image.url}}" />
@@ -119,7 +123,7 @@
 
                     <p style="margin-left: 10%">{% trans "Email" %}: {{user.email}}</p>
                     
-
+                    <!--Options for users-->
                     <a href="{% url 'update_profile' %}"  class="btn"  style="margin-left: 30%; border-radius: 10px;">{% trans "Update Profile Picture" %}</a>
 
                     <br><br><br>
@@ -130,17 +134,18 @@
 
                     <a href="{% url 'update_email' %}" class="btn" style="margin-left: 30%; border-radius: 10px;">{% trans "Update Email" %}</a>
                     
-
+                    <!--Displaying user's food reviews-->
                     <u><p style="margin-left: 35%"> {% trans "Your Reviews"%} </p></u>
 
                     <u><p style="margin-left: 35%"> {% trans "Food Banks"%} </p></u>
 
-
+                   <!--Displaying food bank reviews-->
                     <div class="card-wrapper">
+                        <!--Going through each user's review-->
                         {% for review in review_food_bank %}
                             <a href="{% url 'foodbank_details' review.foodbank_id.id %}" style="text-decoration: none; color: black">
                                 <div class="review-card">
-
+                                        <!--Displaying user's information-->
                                         {% if review.user.profile.profile_image %}
 
                                                 <img class="profile_picture" src="{{review.user.profile.profile_image.url}}"/>
@@ -151,7 +156,7 @@
                                                 
                                         {% endif %}
                                         
-                                        
+                                        <!--Review Information-->
                                         <h3>{{ review.name }} </h3>
                                         <p> {{ review.foodbank_id.name }} </p>
                                         <p>{{ review.get_rating_display }} </p>
@@ -168,14 +173,15 @@
 
             <br><br>
         
-
+            <!--Displaying shelter reviews-->
             <u><p style="margin-left: 35%"> {% trans "Shelters"%} </p></u>
-
+                        
                         <div class="card-wrapper">
+                            <!--Going through each user's review-->
                             {% for review in review_shelter %}
                                     <a href="{% url 'shelter_details' review.shelter_id.id %}" style="text-decoration: none; color: black">
                                         <div class="review-card">
-
+                                                <!--Displaying user's profile picture -->
                                                 {% if review.user.profile.profile_image %}
 
                                                         <img class="profile_picture" src="{{review.user.profile.profile_image.url}}"/>
@@ -186,7 +192,7 @@
                                                         
                                                 {% endif %}
                                                 
-                                                
+                                                <!--Review Information-->
                                                 <h3>{{ review.name }} </h3>
                                                 <p> {{ review.shelter_id.name }} </p>
                                                 <p>{{ review.get_rating_display }} </p>
@@ -203,12 +209,13 @@
                 
 
                     <u><p style="margin-left: 35%"> {% trans "Support Services"%} </p></u>
-
+                        <!--Displaying support services reviews-->
                         <div class="card-wrapper">
+                            <!--Going through each user's review-->
                             {% for review in review_support_service %}
                                     <a href="{% url 'support_service_details' review.support_service_id.id %}" style="text-decoration: none; color: black">
                                         <div class="review-card">
-
+                                                 <!--Displaying user's information-->
                                                 {% if review.user.profile.profile_image %}
 
                                                         <img class="profile_picture" src="{{review.user.profile.profile_image.url}}"/>
@@ -219,7 +226,7 @@
                                                         
                                                 {% endif %}
                                                 
-                                                
+                                                <!--Review Information-->
                                                 <h3>{{ review.name }} </h3>
                                                 <p> {{ review.support_service_id.name }} </p>
                                                 <p>{{ review.get_rating_display }} </p>
@@ -236,10 +243,7 @@
             </div>
         </div>
        
-
-        
-       
-
+        <!--Footer-->
         <div class="footer"> 
             <h1 style="text-align: center;">{% trans "Footer" %} </h1>
             
@@ -247,7 +251,8 @@
             <p> {% trans "Email" %}: w1985568@westminster.ac.uk</p>
             
             <p></p>
-
+            
+            <!--Form to select languages-->
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 {% get_available_languages as LANGUAGES %}
@@ -272,6 +277,7 @@
         </div>
 
         <script> 
+           // Function to active the mobile view
            function myFunction() {
               var x = document.getElementById("nav-bar");
               x.classList.toggle("active")
@@ -320,7 +326,7 @@
            
         </script>
 
-        <!-- https://www.youtube.com/watch?v=WFM_egxOqfo Language-->
+       
  
     </body>
 </html>

@@ -8,9 +8,12 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 
-<html>
-    <body> 
 
+<html>
+    <!---->
+    <body> 
+        
+        <!--label for tts-->
         <h1>
             {{ label }}
 
@@ -21,7 +24,7 @@
             </a>
         </h1>
 
-        <p>
+        <p><!-- If there is no value, "unknown" will be shown-->
             {% if value %}
                 {{ value }}
             {% else %}

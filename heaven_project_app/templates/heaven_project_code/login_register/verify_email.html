@@ -24,6 +24,7 @@
     <body>
         
          <div class="navigation_bar">
+                <!--Navigation Bar-->
                 <div class="navigation_container">
 
                     <ul class="nav-bar" id="nav-bar">
@@ -31,8 +32,9 @@
                         <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
 
-                        <li>
+                        <li><!--Dropdown for mobile view -->
                             <div class="dropdown">
+                                <!--displaying profile image-->
                                 {% if user.profile.profile_image %}
 
                                 <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
@@ -42,6 +44,7 @@
                                     <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
                                     
                                 {% endif %}
+                                <!--Showing content when user hovers-->
                                 <div class="dropdown-content">    
                                 
                                     {% if user.is_authenticated %}
@@ -76,6 +79,7 @@
                         
                     </ul>
                     
+                    <!--function to active the nav bar-->
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                         <i class="fa fa-bars"></i>
                     </a>
@@ -84,7 +88,7 @@
         </div>
 
        
-
+        <!--Email Verification Text-->
         <div class="main-section-home">                     
 
             <h3> 

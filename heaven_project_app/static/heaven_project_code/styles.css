@@ -23,6 +23,19 @@ body {
 }
 
 
+.hero-text {
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+}
+
 .password_field {
     margin-left: -200px;
 }
@@ -180,6 +193,23 @@ body {
     .dropdown-content a, .dropdown-content a:visited {
         color: white !important;
     }
+
+    .hero-text {
+        position: absolute;
+        top: 43%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        color: white;
+        font-weight: bold;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+
+        font-size: clamp(18px, 6vw, 60px);
+    }
+
+    
+   
+
     
     
 }
@@ -216,7 +246,6 @@ body {
     display: block;
     
 }
-
 
 
 
@@ -345,18 +374,7 @@ body {
     text-decoration-color: #666666;
 }
 
-.hero-text {
-    position: absolute;
-    top: 83%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    color: white;
-    font-size: 60px;
-    font-weight: bold;
-    
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-}
+
 
 
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-     <!-- Use https://www.notion.com/ for motivation -->
+     
     
 
     <head>
@@ -15,7 +15,8 @@
 
         <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
     </head>
-
+    
+    <!--Loading Tags-->
     {% csrf_token %}
 
     {% load gtts_tags %}
@@ -26,6 +27,7 @@
 
          
          <div class="navigation_bar">
+               <!--Navigation Bar-->
                 <div class="navigation_container">
 
                     <ul class="nav-bar" id="nav-bar">
@@ -33,8 +35,9 @@
                         <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
 
-                        <li>
+                        <li><!--Dropdown for mobile view -->
                             <div class="dropdown">
+                                 <!--displaying profile image-->
                                 {% if user.profile.profile_image %}
 
                                 <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
@@ -44,6 +47,7 @@
                                     <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
                                     
                                 {% endif %}
+                                <!--Showing content when user hovers-->
                                 <div class="dropdown-content">    
                                 
                                     {% if user.is_authenticated %}
@@ -78,6 +82,7 @@
                         
                     </ul>
                     
+                    <!--function to active the nav bar-->
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                         <i class="fa fa-bars"></i>
                     </a>
@@ -86,19 +91,19 @@
         </div>
 
        
-
+         <!--Displaying home page img and text-->
         <div class="home-page-image"> 
             <img src = "{% static 'heaven_project_code/images/home_page/henning-witzel-city.jpg' %}" width=100%; >
             
             <div class="hero-text">
-               Food banks, shelters & support services.
+               {% trans "Food banks, shelters & support services"%}
             </div>
 
         </div>
 
         <a class="credentials" href="https://unsplash.com/photos/aerial-photography-of-cityscape-at-night-ukvgqriuOgo"> {% trans "Image By" %} Henning Witzel (Unsplash) </a>
  
-
+         <!--First container containing tts, image and text-->
         <div class="main-section-home"> 
            <img src = "{% static 'heaven_project_code/images/home_page/City1.jpg' %}" width=40%> 
            
@@ -136,7 +141,8 @@
         </div>
 
         <a class="credentials" href="https://unsplash.com/photos/black-and-white-pedestrian-lane-in-the-city-during-daytime-vEoO4R1FHrY"> {% trans "Image By" %} Paulo Silva (Unsplash) </a>
-
+        
+         <!--Second container containing tts, image and text-->
         <div class="main-section2-home"> 
             
             <div class="main-section-home-text"> 
@@ -178,7 +184,7 @@
 
         <a class="credentials" href="https://unsplash.com/photos/two-persons-arms-iJ2IG8ckCpA"> {% trans "Image By" %} Youssef Naddam (Unsplash) </a>
         
-
+         <!--Third container containing tts, image and text-->
         <div class="main-section3-home"> 
             
              <img src="{% static 'heaven_project_code/images/home_page/shiwa-id-mobile-phone.jpg' %}" width=40%>
@@ -218,7 +224,8 @@
         </div>
 
         <a class="credentials" href="https://unsplash.com/photos/iphone-screen-showing-icons-on-screen-Uae7ouMw91A"> {% trans "Image By" %} Shiwa ID (Unsplash) </a>
-
+        
+        <!--Footer-->
         <div class="footer"> 
             <h1 style="text-align: center;"> {% trans "Footer" %} </h1>
             
@@ -227,6 +234,7 @@
             
             <p></p>
             
+            <!--Form to select languages-->
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 {% get_available_languages as LANGUAGES %}
@@ -251,6 +259,7 @@
         </div>
 
         <script> 
+           // Function to active the navigation bar
            function myFunction() {
               var x = document.getElementById("nav-bar");
               x.classList.toggle("active")

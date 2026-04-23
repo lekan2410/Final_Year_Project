@@ -28,18 +28,18 @@
     <body>
 
        
-        
+         <!--Navigation Bar-->
         <div class="navigation_bar">
                 <div class="navigation_container">
-
+                    
                     <ul class="nav-bar" id="nav-bar">
                         <li><a href="{% url 'home' %}">{% trans "About" %}</a></li>
                         <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
 
-                        <li>
+                        <li><!--Dropdown for mobile view -->
                             <div class="dropdown">
-
+                                <!--displaying profile image-->
                                 {% if user.profile.profile_image %}
 
                                     <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
@@ -51,7 +51,7 @@
                                 {% endif %}
                                 
                                 <div class="dropdown-content">    
-                                
+                                    <!--Showing content when user hovers-->
                                     {% if user.is_authenticated %}
                                     <p style="width: 13px"> {{user.username}}</p>
                                         
@@ -83,7 +83,7 @@
                                 
                         
                     </ul>
-                    
+                    <!--function to active the nav bar-->
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                         <i class="fa fa-bars"></i>
                     </a>
@@ -92,9 +92,9 @@
         </div>
 
         
-    
+        <!--Container for updating review-->
         <div class="login_container">
-
+            <!--Form for updating review-->
             <form method="post"> 
                 {% csrf_token %}
 
@@ -106,7 +106,8 @@
             </form>
 
         </div>
-
+        
+        <!--Footer-->
         <div class="footer"> 
             <h1 style="text-align: center;">{% trans "Footer" %} </h1>
             
@@ -114,7 +115,8 @@
             <p> {% trans "Email" %}: w1985568@westminster.ac.uk</p>
             
             <p></p>
-
+            
+            <!--Form to select languages-->
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 {% get_available_languages as LANGUAGES %}
@@ -139,6 +141,7 @@
         </div>
 
         <script> 
+            // Function to activate the navigation bar
            function myFunction() {
               var x = document.getElementById("nav-bar");
               x.classList.toggle("active")
@@ -184,9 +187,6 @@
            
         </script>
 
-        <!-- https://www.youtube.com/watch?v=WFM_egxOqfo Language-->
-
-        <!-- https://tomdekan.com/articles/google-sign-in -->
  
     </body>
 </html>

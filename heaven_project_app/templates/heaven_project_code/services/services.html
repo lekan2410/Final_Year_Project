@@ -18,14 +18,15 @@
 
         <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
     </head>
-
+     
+    <!--Loading Tags-->
     {% csrf_token %}
 
     {% load gtts_tags %}
     {% get_current_language as LANGUAGE_CODE %}
     
     <body>
-        
+        <!--Navigation Bar-->
          <div class="navigation_bar">
                 <div class="navigation_container">
 
@@ -34,10 +35,11 @@
                         <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot" %}</a></li>
 
-                        <li>
+                        <li><!--Dropdown for mobile view -->
                             <div class="dropdown">
+                                <!--displaying profile image-->
                                 {% if user.profile.profile_image %}
-
+                                             
                                 <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
 
                                 {% else %}
@@ -47,7 +49,7 @@
                                 {% endif %}
                                 
                                 <div class="dropdown-content">    
-                                
+                                     <!--Showing content when user hovers-->
                                     {% if user.is_authenticated %}
                                     <p style="width: 13px"> {{user.username}}</p>
                                         
@@ -79,6 +81,7 @@
                         
                     </ul>
                     
+                    <!--function to active the nav bar-->
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                         <i class="fa fa-bars"></i>
                     </a>
@@ -86,7 +89,7 @@
                 </div>
         </div>
 
-        
+        <!--Container for search services-->
         <div class="search-services" > 
 
             <form method="get" id="locationForm">
@@ -131,10 +134,13 @@
                 <button type="submit" class="btn">{% trans "Search" %}</button>
             
             </form>  
-
+             
+            <!--Returning results based on query-->
              {% if query %}
                    <h3>Search results for "{{ query }}" </h3>
                 {% endif %}
+
+                <!--Showcasing all the food banks-->
 
                 {% if food_banks %}
                         <h1>
@@ -160,7 +166,7 @@
                 {% endif %}
                 
 
-
+                <!--Showcasing all the shelters -->
                 {% if shelters %}
                         <h1> 
 
@@ -183,7 +189,8 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-
+                
+                <!--Showcasing all the support services -->
                 {% if support_services %}
                     <h1> 
                     
@@ -211,13 +218,15 @@
 
             
         </div>
-
+        
+        <!--Footer-->
         <div class="footer"> 
             <h1 style="text-align: center;"> {% trans "Footer" %} </h1>
             
             <p>© 2026 Haven Project</p>
             <p> {% trans "Email" %}:  w1985568@westminster.ac.uk</p>
-
+            
+            <!--Form to select languages-->
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 {% get_available_languages as LANGUAGES %}
@@ -243,6 +252,7 @@
         <!--https://www.youtube.com/watch?v=OvDu9c8PYrk  Services-->
 
         <script> 
+           // Function to activate the navigation bar
            function myFunction() {
               var x = document.getElementById("nav-bar");
               x.classList.toggle("active")
@@ -292,6 +302,7 @@
             function getLocation() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
+                        // Getting user's longitude and latitude
                         document.getElementById("latitude").value = position.coords.latitude;
                         document.getElementById("longitude").value = position.coords.longitude;
 

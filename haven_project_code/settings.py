@@ -9,6 +9,7 @@ from pathlib import Path
  
 load_dotenv()
  
+# Setting up Google SSO
 GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID')
 if not GOOGLE_OAUTH_CLIENT_ID:
     raise ValueError(
@@ -55,6 +56,7 @@ MEDIA_URL = '/media/'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Allowed domains
 ALLOWED_HOSTS = []
 
 
@@ -74,10 +76,11 @@ INSTALLED_APPS = [
 
 
 
-
+# Google SSO allowed domains
 GOOGLE_SSO_ALLOWABLE_DOMAINS = ["gmail.com"]
 GOOGLE_SSO_AUTO_CREATE_USER = True
 
+# Redirects to home page after logging in.
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
@@ -111,7 +114,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'haven_project_code.wsgi.application'
 
-
+#Available languages
 LANGUAGE_CODE = 'en'
 LANGUAGES = [
     ('en', 'English'),
@@ -184,7 +187,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
 
-
+# Variables used to send emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

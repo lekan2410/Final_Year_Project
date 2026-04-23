@@ -58,7 +58,7 @@ pairs = [
 
      [r"(.*)", ["I'm sorry, I didn’t quite understand that.\n\n"
                "You can try things like:<br><br>"
-               "- 'Where can I find a shelter?'<br><br>"
+               "- 'specific food bank?'<br><br>"
                "- 'Nearest Shelter'<br><br>"
                "- Type 'commands' to see all options"]],
 

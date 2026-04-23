@@ -103,7 +103,7 @@ class ReviewShelterForm(forms.ModelForm):
     
     recommend_q= forms.ChoiceField(choices=YES_NO_CHOICES,
                 widget=forms.RadioSelect,
-                label=_("Would you recommend this food bank?"))
+                label=_("Would you recommend this shelter?"))
 
     class Meta:
         model = Review_Shelter
@@ -135,7 +135,7 @@ class ReviewSupportServiceForm(forms.ModelForm):
     
     recommend_q= forms.ChoiceField(choices=YES_NO_CHOICES,
                 widget=forms.RadioSelect,
-                label=_("Would you recommend this food bank?"))
+                label=_("Would you recommend this support service?"))
 
     class Meta:
         model = Review_Support_Service

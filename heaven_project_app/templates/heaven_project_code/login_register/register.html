@@ -19,7 +19,8 @@
         <link rel="stylesheet" href="{% static 'heaven_project_code/styles.css' %}">
          <link rel="stylesheet" href="{% static 'heaven_project_code/google_sso/google_button.css'%}">
     </head>
-
+    
+    <!--Loading Tags-->
     {% csrf_token %}
 
     {% load gtts_tags %}
@@ -27,6 +28,7 @@
     
     <body>
          <div class="navigation_bar">
+                <!--Navigation Bar-->
                 <div class="navigation_container">
 
                     <ul class="nav-bar" id="nav-bar">
@@ -34,9 +36,9 @@
                         <li><a href="{% url 'services' %}">{% trans "Find Support" %}</a></li>
                         <li><a href="{% url 'chatbot' %}">{% trans "Chatbot"%}</a></li>
 
-                        <li>
+                        <li><!--Dropdown for mobile view -->
                             <div class="dropdown">
-
+                                <!--displaying profile image-->
                                 {% if user.profile.profile_image %}
 
                                     <img class="profile_picture" src="{{user.profile.profile_image.url}}"/>
@@ -46,7 +48,7 @@
                                     <img src="{% static 'heaven_project_code/images/nav_bar/profile_icon.svg' %}" width=75px>
                                     
                                 {% endif %}
-                                
+                                <!--Showing content when user hovers-->
                                 <div class="dropdown-content">    
                                 
                                     {% if user.is_authenticated %}
@@ -81,6 +83,7 @@
                         
                     </ul>
                     
+                    <!--function to active the nav bar-->
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                         <i class="fa fa-bars"></i>
                     </a>
@@ -88,13 +91,12 @@
                 </div>
         </div>
 
-    
+        
+        <!--Regiser container-->
         <div class="login_container">
 
             <u style="text-align: center"><p>
                 
-                
-
                 
                 {% trans  "Register" as register %}
                 
@@ -127,14 +129,12 @@
 
             <br>
             <br>
-
+            
+            <!--Form to register-->
             <form method = "post" class="fields">
                 {% csrf_token %}
                 {{ form }}
-                
-
-                
-
+            
                  <button type = "submit" class="btn" style="margin-left: 18%; border-radius: 10px;">{% trans  "Sign Up!"%}</button>
                 
                 <br>
@@ -149,7 +149,8 @@
            
             
             <br>
-
+            
+            <!--Link to login page-->
             <div> 
               <a href="{% url 'login' %}", style="margin-left: 27%; color: inherit; text-decoration:none;">
                 {% trans  "Already have an account, Login!" as login_text %}
@@ -169,7 +170,8 @@
             <br>
 
         </div>
-
+        
+        <!--Footer-->
         <div class="footer"> 
             <h1 style="text-align: center;"> {% trans "Footer" %}</h1>
             
@@ -177,7 +179,8 @@
             <p> {% trans "Email" %}:  w1985568@westminster.ac.uk</p>
             
             <p></p>
-
+            
+            <!--Form to select languages-->
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 {% get_available_languages as LANGUAGES %}
@@ -201,6 +204,7 @@
         </div>
 
         <script> 
+           // Function to active the navigation bar
            function myFunction() {
               var x = document.getElementById("nav-bar");
               x.classList.toggle("active")

@@ -5,7 +5,6 @@ from .views import ReviewDeleteViewFoodBank, ReviewUpdateViewFoodBank, ReviewDel
 
 urlpatterns = [
      path("", views.home, name="home"),
-     path("test/", views.testing, name="test"),
      path("login/", views.login_view, name="login"),
      path('sign-out', views.logout_view, name="sign_out"),
      path("delete-account/", views.delete_account, name="delete_account"),
